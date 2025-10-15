@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 @Getter
@@ -29,6 +30,13 @@ public class DealsPage {
     @Step
     public DealsPage checkPageTitle(String title) {
         getPageTitle().shouldHave(text(title));
+
+        return this;
+    }
+
+    @Step
+    public DealsPage checkPageTitleVisibility() {
+        getPageTitle().shouldBe(visible);
 
         return this;
     }
