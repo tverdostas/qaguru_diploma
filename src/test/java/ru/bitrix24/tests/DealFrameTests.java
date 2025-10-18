@@ -1,5 +1,6 @@
 package ru.bitrix24.tests;
 
+import com.codeborne.selenide.SelenideElement;
 import ru.bitrix24.BaseTest;
 import ru.bitrix24.api.deals.Deal;
 import ru.bitrix24.api.deals.DealListResponseDto;
@@ -7,12 +8,16 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import ru.bitrix24.api.deals.DealsApi;
 import ru.bitrix24.api.deals.GetDealRequestDto;
+import ru.bitrix24.components.DealsIframe;
 import ru.bitrix24.enums.DealsStatus;
 
 import java.util.List;
 import java.util.Random;
 
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.open;
 import static org.assertj.core.api.Assertions.assertThat;
+import static ru.bitrix24.config.AppConfig.dealsUrl;
 
 public class DealFrameTests extends BaseTest {
 
@@ -22,11 +27,11 @@ public class DealFrameTests extends BaseTest {
 
     private final DealsApi dealsApi = new DealsApi();
 
-
+    private final DealsIframe dealsIframe = new DealsIframe();
 
     @ParameterizedTest
     @EnumSource(DealsStatus.class)
-    public void AllStagesOfDealDisplayedInDealIframe(){
+    public void AllStagesOfDealDisplayedInDealIframe(DealsStatus status){
 
         GetDealRequestDto dealsList = GetDealRequestDto.builder()
                 .filter(GetDealRequestDto.Filter.builder().CLOSED("N").build())
@@ -52,7 +57,10 @@ public class DealFrameTests extends BaseTest {
 
         System.out.println("Случайная сделка: ID=" + randomDeal.getId() + ", TITLE=" + randomDeal.getTitle());
 
+        open(dealsUrl + randomDeal.getId() + "/");
 
+        SelenideElement timelineTab = dealsIframe.getTimelineTab(status.getDisplayName());
+        timelineTab.shouldBe(visible);
     }
     }
 

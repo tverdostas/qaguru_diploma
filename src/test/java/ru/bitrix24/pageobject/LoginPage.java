@@ -5,6 +5,7 @@ import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPage {
 
@@ -48,6 +49,15 @@ public class LoginPage {
     @Step
     public LoginPage checkWarningText(String warning) {
         inputLoginWarning().shouldHave(text(warning));
+
+        return this;
+    }
+
+    @Step
+    public LoginPage successfulLogin() {
+
+        fillLogin("woltia94@mail.com")
+                .fillUserPass("#4H=Mgchst7t_zE");
 
         return this;
     }

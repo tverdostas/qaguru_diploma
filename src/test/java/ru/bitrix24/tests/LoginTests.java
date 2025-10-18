@@ -29,7 +29,7 @@ public class LoginTests {
     }
 
     @Test
-    public void wrongPasswordTest() {
+    public void successfulLoginTest() {
         open("https://b24-ql072f.bitrix24.ru");
 
         loginPage.fillLogin("woltia94@mail.com")
@@ -39,7 +39,7 @@ public class LoginTests {
     }
 
     @Test
-    public void successfulLoginTest() {
+    public void wrongPasswordTest() {
         open("https://b24-ql072f.bitrix24.ru");
 
         loginPage.fillLogin("woltia94@mail.com")
