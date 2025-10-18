@@ -1,4 +1,4 @@
-package tests;
+package ru.bitrix24.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
@@ -12,12 +12,12 @@ import static com.codeborne.selenide.Selenide.switchTo;
 
 public class TestBase {
 
-    @BeforeAll
+/*    @BeforeAll
     static void browserConfigurations(){
         Configuration.baseUrl = "https://b24-ql072f.bitrix24.ru";
         Configuration.pageLoadStrategy = "eager";
         Configuration.browserSize = "1920x1080";
-    }
+    }*/
 
     @AfterEach
     public void closeWebDriver() {

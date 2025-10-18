@@ -1,4 +1,4 @@
-package tests;
+package ru.bitrix24.tests;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

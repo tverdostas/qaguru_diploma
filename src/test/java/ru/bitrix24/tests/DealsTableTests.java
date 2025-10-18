@@ -1,4 +1,4 @@
-package tests;
+package ru.bitrix24.tests;
 
 import org.junit.jupiter.api.Test;
 import ru.bitrix24.pageobject.DealsPage;

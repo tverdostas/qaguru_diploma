@@ -1,4 +1,4 @@
-package ru.bitrix24.pageobject.enums;
+package ru.bitrix24.enums;
 
 import lombok.Getter;
 

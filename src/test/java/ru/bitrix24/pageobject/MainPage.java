@@ -1,7 +1,6 @@
 package ru.bitrix24.pageobject;
 
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.conditions.Visible;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
