@@ -1,18 +1,20 @@
 package ru.bitrix24.tests;
 
 import com.codeborne.selenide.SelenideElement;
+import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.TestFactory;
 import ru.bitrix24.BaseTest;
 import ru.bitrix24.api.deals.Deal;
 import ru.bitrix24.api.deals.DealListResponseDto;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
 import ru.bitrix24.api.deals.DealsApi;
 import ru.bitrix24.api.deals.GetDealRequestDto;
 import ru.bitrix24.components.DealsIframe;
-import ru.bitrix24.enums.DealsStatus;
+import ru.bitrix24.enums.TimelineActions;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
@@ -21,46 +23,45 @@ import static ru.bitrix24.config.AppConfig.dealsUrl;
 
 public class DealFrameTests extends BaseTest {
 
-/*    private Bitrix24ApiClient apiClient;
-    private static final String BASE_URL = "https://portal-test.kuber.3l.ru/rest/2204";
-    private static final String WEBHOOK_TOKEN = "password2Kub0057";*/
-
     private final DealsApi dealsApi = new DealsApi();
 
     private final DealsIframe dealsIframe = new DealsIframe();
 
-    @ParameterizedTest
-    @EnumSource(DealsStatus.class)
-    public void AllStagesOfDealDisplayedInDealIframe(DealsStatus status){
-
+    @TestFactory
+    Stream<DynamicTest> allActionsInTimelineIsDisplayedInDealIframe() {
+        // Получаем одну сделку
         GetDealRequestDto dealsList = GetDealRequestDto.builder()
                 .filter(GetDealRequestDto.Filter.builder().CLOSED("N").build())
                 .build();
 
-        // 2. Отправляем запрос и получаем ответ
         DealListResponseDto response = dealsApi.getListOfDeals(dealsList);
-
-        // Then
         assertThat(response).isNotNull();
         assertThat(response.getResult()).isNotNull();
 
         List<Deal> deals = response.getResult();
-        assertThat(deals).isNotEmpty(); // убедимся, что есть хотя бы одна
+        assertThat(deals).isNotEmpty();
 
         // Выбираем случайную сделку
         Random random = new Random();
         Deal randomDeal = deals.get(random.nextInt(deals.size()));
-
-        // Проверяем, что у неё есть ID и название
         assertThat(randomDeal.getId()).isNotBlank();
         assertThat(randomDeal.getTitle()).isNotBlank();
 
-        System.out.println("Случайная сделка: ID=" + randomDeal.getId() + ", TITLE=" + randomDeal.getTitle());
+        System.out.println("Используемая сделка: ID=" + randomDeal.getId() + ", TITLE=" + randomDeal.getTitle());
 
+        // Открываем страницу сделки один раз
         open(dealsUrl + randomDeal.getId() + "/");
+        switchToFrame();
 
-        SelenideElement timelineTab = dealsIframe.getTimelineTab(status.getDisplayName());
-        timelineTab.shouldBe(visible);
+        // Генерируем тест для каждого элемента enum
+        return Arrays.stream(TimelineActions.values())
+                .map(action -> DynamicTest.dynamicTest(
+                        "Проверка таба: " + action.name(),
+                        () -> {
+                            SelenideElement timelineTab = dealsIframe.getTimelineTab(action.getDisplayName());
+                            timelineTab.shouldBe(visible);
+                        }
+                ));
     }
     }
 

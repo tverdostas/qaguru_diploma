@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import ru.bitrix24.pageobject.DealsPage;
 import ru.bitrix24.pageobject.LoginPage;
+import ru.bitrix24.pageobject.StartPage;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -12,6 +13,7 @@ public class LoginTests {
 
     LoginPage loginPage = new LoginPage();
     DealsPage dealsPage = new DealsPage();
+    StartPage startPage = new StartPage();
 
     @ParameterizedTest
     @CsvSource({
@@ -21,7 +23,9 @@ public class LoginTests {
 
     @Test
     public void wrongLoginTests(String username, String warningText) {
-        open("https://b24-ql072f.bitrix24.ru");
+        open("https://b24-ql072f.bitrix24.ru/");
+
+        // startPage.clickLoginButton();
 
         loginPage.fillLogin(username)
                 .checkVisibilityOfWarning()
@@ -30,17 +34,19 @@ public class LoginTests {
 
     @Test
     public void successfulLoginTest() {
-        open("https://b24-ql072f.bitrix24.ru");
+        open("https://b24-ql072f.bitrix24.ru/");
 
-        loginPage.fillLogin("woltia94@mail.com")
-                .fillUserPass("#4H=Mgchst7t_zE");
+        // startPage.clickLoginButton();
+
+        loginPage.fillLogin("+7 909 338-12-97")
+                .fillUserPass("Bitrix1910");
 
         dealsPage.checkPageTitleVisibility();
     }
 
     @Test
     public void wrongPasswordTest() {
-        open("https://b24-ql072f.bitrix24.ru");
+        open("https://b24-ql072f.bitrix24.ru/");
 
         loginPage.fillLogin("woltia94@mail.com")
                 .fillUserPass("12345qwe")

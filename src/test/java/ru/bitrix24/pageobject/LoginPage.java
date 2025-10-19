@@ -56,8 +56,8 @@ public class LoginPage {
     @Step
     public LoginPage successfulLogin() {
 
-        fillLogin("woltia94@mail.com")
-                .fillUserPass("#4H=Mgchst7t_zE");
+        fillLogin("+7 909 338-12-97")
+                .fillUserPass("Bitrix1910");
 
         return this;
     }
