@@ -6,9 +6,9 @@ import lombok.Getter;
 public enum DealsStatus {
     NEW("Новая"),
     DOCUMENTS_PREPARATION("Подготовка документов"),
-    PREPAYMENT_INVOICE("Счёт на предоплату"),
+    PREPAYMENT_INVOICE("Cчёт на предоплату"),
     IN_WORK("В работе"),
-    FINAL_INVOICE("Финальный счет"),
+    FINAL_INVOICE("Финальный счёт"),
     DEAL_COMPLETED("Завершить сделку");
 
     // Геттер для получения названия на русском
