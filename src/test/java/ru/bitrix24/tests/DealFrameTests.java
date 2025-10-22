@@ -5,22 +5,16 @@ import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 import ru.bitrix24.BaseTest;
 import ru.bitrix24.api.deals.Deal;
-import ru.bitrix24.api.deals.DealListResponseDto;
-import ru.bitrix24.api.deals.DealsApi;
-import ru.bitrix24.api.deals.GetDealRequestDto;
 import ru.bitrix24.api.steps.DealsSteps;
 import ru.bitrix24.components.DealsIframe;
 import ru.bitrix24.enums.DealsStatus;
 import ru.bitrix24.enums.TimelineActions;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
-import static org.assertj.core.api.Assertions.assertThat;
 import static ru.bitrix24.config.AppConfig.dealsUrl;
 
 public class DealFrameTests extends BaseTest {

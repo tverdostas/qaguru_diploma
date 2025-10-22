@@ -6,6 +6,7 @@ import ru.bitrix24.api.deals.DealsApi;
 import ru.bitrix24.api.deals.GetDealRequestDto;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,7 +17,8 @@ public class DealsSteps {
 
     public Deal getRandomActiveDeal() {
         GetDealRequestDto dealsList = GetDealRequestDto.builder()
-                .filter(GetDealRequestDto.Filter.builder().CLOSED("N").build())
+                .filter(Map.of("CLOSED", "N"))
+                .order(Map.of("DATE_CREATE", "DESC"))
                 .build();
 
         DealListResponseDto response = dealsApi.getListOfDeals(dealsList);

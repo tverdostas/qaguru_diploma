@@ -15,6 +15,21 @@ public class DealsApi extends BaseApi {
                 .then()
                 .statusCode(200)
                 .extract().response().asString();
+
         return DealListResponseDto.fromJson(json);
+    }
+
+    public boolean deleteDeal(String dealId){
+        String json = given().log().all()
+                .spec(defaultRequestSpec)
+                .queryParam("id", dealId)
+                .when()
+                .post(DealsEndPoint.DELETE_DEAL)
+                .then()
+                .statusCode(200)
+                .extract().response().asString();
+
+        DealDeleteResponseDto response = DealDeleteResponseDto.fromJson(json);
+        return response.isResult();
     }
 }

@@ -13,7 +13,6 @@ public class LoginTests {
 
     LoginPage loginPage = new LoginPage();
     DealsPage dealsPage = new DealsPage();
-    StartPage startPage = new StartPage();
 
     @ParameterizedTest
     @CsvSource({
@@ -25,8 +24,6 @@ public class LoginTests {
     public void wrongLoginTests(String username, String warningText) {
         open("https://b24-ql072f.bitrix24.ru/");
 
-        // startPage.clickLoginButton();
-
         loginPage.fillLogin(username)
                 .checkVisibilityOfWarning()
                 .checkWarningText(warningText);
@@ -35,8 +32,6 @@ public class LoginTests {
     @Test
     public void successfulLoginTest() {
         open("https://b24-ql072f.bitrix24.ru/");
-
-        // startPage.clickLoginButton();
 
         loginPage.fillLogin("+7 909 338-12-97")
                 .fillUserPass("Bitrix1910");

@@ -19,6 +19,11 @@ public class DealsPage {
     public SelenideElement getPageTitle() {
         return $x("//*[@id=\"pagetitle\"]");
     }
+
+    public SelenideElement dealCreateButton() {
+        return $x("//*[contains(@class, 'ui-btn-main')]/span[@class='ui-btn-text' and .='Создать']");
+    }
+
     @Step
     public DealsPage openPage(){
         open("/crm/deal/kanban/");
@@ -37,6 +42,13 @@ public class DealsPage {
     @Step
     public DealsPage checkPageTitleVisibility() {
         getPageTitle().shouldBe(visible);
+
+        return this;
+    }
+
+    @Step
+    public DealsPage clickCreateButton() {
+        dealCreateButton().click();
 
         return this;
     }
