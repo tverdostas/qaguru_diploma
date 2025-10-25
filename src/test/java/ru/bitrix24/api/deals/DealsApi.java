@@ -32,4 +32,17 @@ public class DealsApi extends BaseApi {
         DealDeleteResponseDto response = DealDeleteResponseDto.fromJson(json);
         return response.isResult();
     }
+
+    public DealCreateResponseDto createDeal(DealCreateRequestDto deal){
+        String json = given().log().all()
+                .spec(defaultRequestSpec)
+                .body(deal.toJson())
+                .when()
+                .post(DealsEndPoint.CREATE_DEAL)
+                .then()
+                .statusCode(200)
+                .extract().response().asString();
+
+        return DealCreateResponseDto.fromJson(json);
+    }
 }

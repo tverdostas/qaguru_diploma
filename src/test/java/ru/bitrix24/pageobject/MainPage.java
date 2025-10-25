@@ -22,4 +22,8 @@ public class MainPage {
 
         return this;
     }
+
+    public SelenideElement findMenuButton(String itemName) {
+        return $x("//span[contains(@class, 'menu-item-link-text') and normalize-space()='"+ itemName +"']");
+    }
 }

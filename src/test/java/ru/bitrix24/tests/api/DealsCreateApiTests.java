@@ -1,29 +1,25 @@
-package ru.bitrix24.tests;
+package ru.bitrix24.tests.api;
 
-import com.codeborne.selenide.Selenide;
+import io.restassured.RestAssured;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Keys;
 import ru.bitrix24.BaseTest;
 import ru.bitrix24.api.deals.*;
-import ru.bitrix24.components.DealsCreateIframe;
-import ru.bitrix24.pageobject.DealsPage;
-
-import static com.codeborne.selenide.Selenide.open;
-import static org.assertj.core.api.Assertions.assertThat;
+import ru.bitrix24.config.AppConfig;
 
 import java.util.Map;
 
-import static com.codeborne.selenide.Condition.visible;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class DealsCreateTests extends BaseTest {
+public class DealsCreateApiTests {
 
-    DealsPage dealsPage = new DealsPage();
     DealsApi dealsApi = new DealsApi();
 
     @Test
-    public void dealIsSuccessfullyCreatedByButton() {
+    public void dealIsSuccessfullyCreatedByApi() {
 
-        String createdDealId = null; // будем хранить ID созданной сделки
+        RestAssured.baseURI = AppConfig.apiUrl + AppConfig.apiUrl + AppConfig.apiWebhook;
+
+        String createdDealId = ""; // будем хранить ID созданной сделки
 
         // 1. Формируем запрос для получения списка открытых сделок
         GetDealRequestDto dealsRequest = GetDealRequestDto.builder()
@@ -36,25 +32,14 @@ public class DealsCreateTests extends BaseTest {
         int initialDealCount = initialResponse.getResult().size();
         System.out.println("Initial deal count: " + initialDealCount);
 
-        // 2. Открываем страницу и нажимаем "Создать"
-        // open("https://b24-ql072f.bitrix24.ru/crm/deal/list/");
-        dealsPage.clickCreateButton();
+        // Создаем сделку через апи
+        DealCreateResponseDto createResponse = dealsApi.createDeal(
+                DealCreateRequestDto.builder()
+                        .fields(Map.of("TITLE", "Сделка создано автотестом"))
+                        .build()
+        );
 
-        // 3. Переключаемся во фрейм (предположим, что метод switchToFrame() реализован в BaseTest или здесь)
-        switchToFrame(); // Убедитесь, что этот метод существует и корректно переключает в iframe
-
-        // 4. Заполняем поле названия сделки
-        DealsCreateIframe dealForm = new DealsCreateIframe();
-        dealForm.inputNameOfDeal().shouldBe(visible).setValue("создано автотестом");
-
-        // 5. Сохраняем через Ctrl+Enter
-        dealForm.inputNameOfDeal().sendKeys(Keys.chord(Keys.CONTROL, Keys.ENTER));
-
-        // 6. Возвращаемся в основной контекст
-        Selenide.switchTo().defaultContent();
-
-        // 7. Ждём завершения создания (лучше заменить на Awaitility в продакшене)
-        Selenide.sleep(3000);
+        createdDealId = String.valueOf(createResponse.getResult());
 
         // 8. Запрашиваем список снова
         DealListResponseDto finalResponse = dealsApi.getListOfDeals(dealsRequest);
@@ -76,7 +61,7 @@ public class DealsCreateTests extends BaseTest {
         boolean deleted = dealsApi.deleteDeal(createdDealId);
         assertThat(deleted).isTrue();
 
-        // 11. (Опционально) Проверяем, что сделка удалена
+        // 11. Проверяем, что сделка удалена
         DealListResponseDto afterDeleteResponse = dealsApi.getListOfDeals(dealsRequest);
         int afterDeleteCount = afterDeleteResponse.getResult().size();
         assertThat(afterDeleteCount).isEqualTo(initialDealCount); // вернулись к исходному количеству

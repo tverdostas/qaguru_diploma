@@ -3,13 +3,14 @@ package ru.bitrix24.tests;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import ru.bitrix24.BaseTest;
 import ru.bitrix24.pageobject.DealsPage;
 import ru.bitrix24.pageobject.LoginPage;
 import ru.bitrix24.pageobject.StartPage;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class LoginTests {
+public class LoginTests extends BaseTest {
 
     LoginPage loginPage = new LoginPage();
     DealsPage dealsPage = new DealsPage();
