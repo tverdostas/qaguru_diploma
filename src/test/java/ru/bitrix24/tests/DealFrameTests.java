@@ -15,7 +15,6 @@ import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
-import static ru.bitrix24.config.AppConfig.dealsUrl;
 
 public class DealFrameTests extends BaseTest {
 

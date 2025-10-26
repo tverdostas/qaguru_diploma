@@ -13,6 +13,7 @@ import ru.bitrix24.pageobject.LoginPage;
 
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.*;
+import static ru.bitrix24.config.AppConfig.getBaseUrl;
 
 public class BaseTest {
 /*    @BeforeAll
@@ -24,13 +25,14 @@ public class BaseTest {
         loginPage.successfulLogin();
     }*/
 
+    protected String dealsUrl = getBaseUrl() + "crm/deal/details/";
+
     @BeforeAll
     static void setUp() {
         Configuration.baseUrl = "https://b24-ql072f.bitrix24.ru";
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
-        RestAssured.baseURI = AppConfig.apiUrl + AppConfig.apiUrl + AppConfig.apiWebhook;
         // Configuration.headless = true; // если нужно
     }
 

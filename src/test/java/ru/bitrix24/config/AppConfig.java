@@ -4,8 +4,28 @@ import lombok.Getter;
 
 @Getter
 public class AppConfig {
-    public static String apiUrl = "https://b24-ql072f.bitrix24.ru/rest/";
-    public static String apiWebhook = "1/8yxs2pfnvwxc05av";
-    public static String url = "https://b24-ql072f.bitrix24.ru/";
+/*    public static String url = System.getenv("BASE_URL");
     public static String dealsUrl = url + "crm/deal/details/";
+    public static String apiUrl = url + "rest/";
+    public static String apiWebhook = System.getenv("API_WEBHOOK");*/
+
+    public static String getBaseUrl() {
+        String url = System.getProperty("BASE_URL");
+        if (url == null || url.isBlank()) {
+            throw new IllegalStateException("BASE_URL не задан!");
+        }
+        return url;
+    }
+
+    public static String getApiWebhook() {
+        String webhook = System.getProperty("API_WEBHOOK");
+        if (webhook == null || webhook.isBlank()) {
+            throw new IllegalStateException("API_WEBHOOK не задан!");
+        }
+        return webhook;
+    }
+
+    public static String getRestBaseUrl() {
+        return getBaseUrl() + "/rest/" + getApiWebhook();
+    }
 }

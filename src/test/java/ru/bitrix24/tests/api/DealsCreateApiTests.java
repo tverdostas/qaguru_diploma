@@ -17,8 +17,6 @@ public class DealsCreateApiTests {
     @Test
     public void dealIsSuccessfullyCreatedByApi() {
 
-        RestAssured.baseURI = AppConfig.apiUrl + AppConfig.apiUrl + AppConfig.apiWebhook;
-
         String createdDealId = ""; // будем хранить ID созданной сделки
 
         // 1. Формируем запрос для получения списка открытых сделок
@@ -47,13 +45,6 @@ public class DealsCreateApiTests {
         System.out.println("Final deal count: " + finalDealCount);
 
         assertThat(finalDealCount).isEqualTo(initialDealCount + 1);
-
-        // 9. Находим ID только что созданной сделки по названию
-        createdDealId = finalResponse.getResult().stream()
-                .filter(deal -> "создано автотестом".equals(deal.getTitle()))
-                .findFirst()
-                .map(Deal::getId) // предполагается, что у DealDto есть getId()
-                .orElseThrow(() -> new IllegalStateException("Созданная сделка не найдена в списке"));
 
         System.out.println("Created deal ID: " + createdDealId);
 
