@@ -7,6 +7,7 @@ import ru.bitrix24.BaseTest;
 import ru.bitrix24.api.deals.Deal;
 import ru.bitrix24.api.steps.DealsSteps;
 import ru.bitrix24.components.DealsIframe;
+import ru.bitrix24.config.AppConfig;
 import ru.bitrix24.enums.DealsStatus;
 import ru.bitrix24.enums.TimelineActions;
 
@@ -15,6 +16,7 @@ import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class DealFrameTests extends BaseTest {
 
@@ -25,7 +27,12 @@ public class DealFrameTests extends BaseTest {
         // Получаем одну сделку
         DealsSteps dealsSteps = new DealsSteps();
         Deal deal = dealsSteps.getRandomActiveDeal();
-        open(dealsUrl + deal.getId() + "/");
+
+        successfulLogin();
+
+        sleep(30000);
+
+        open(AppConfig.getDealsUrl() + deal.getId() + "/");
         switchToFrame();
 
         return Arrays.stream(TimelineActions.values())
@@ -43,7 +50,12 @@ public class DealFrameTests extends BaseTest {
         // Получаем одну сделку
         DealsSteps dealsSteps = new DealsSteps();
         Deal deal = dealsSteps.getRandomActiveDeal();
-        open(dealsUrl + deal.getId() + "/");
+
+        successfulLogin();
+
+        sleep(30000);
+
+        open(AppConfig.getDealsUrl() + deal.getId() + "/");
         switchToFrame();
 
         return Arrays.stream(DealsStatus.values())

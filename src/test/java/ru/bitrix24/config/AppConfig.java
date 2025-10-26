@@ -28,4 +28,8 @@ public class AppConfig {
     public static String getRestBaseUrl() {
         return getBaseUrl() + "/rest/" + getApiWebhook();
     }
+
+    public static String getDealsUrl(){
+        return AppConfig.getBaseUrl() + "/crm/deal/details/";
+    }
 }
