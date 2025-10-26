@@ -16,10 +16,7 @@ public class DealsTableTests extends BaseTest {
     @Test
     public void checkColumnTotalPrice(){
 
-        open("https://b24-ql072f.bitrix24.ru");
-
-        loginPage.fillLogin("woltia94@gmail.com")
-                .fillUserPass("#4H=Mgchst7t_zE");
+        successfulLogin();
 
         dealsPage.checkPageTitle("Сделки");
 

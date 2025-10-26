@@ -38,6 +38,9 @@ public class DealsCreateTests extends BaseTest {
 
         // 2. Открываем страницу и нажимаем "Создать"
         // open("https://b24-ql072f.bitrix24.ru/crm/deal/list/");
+
+        successfulLogin();
+
         dealsPage.clickCreateButton();
 
         // 3. Переключаемся во фрейм (предположим, что метод switchToFrame() реализован в BaseTest или здесь)

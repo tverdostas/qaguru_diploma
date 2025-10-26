@@ -44,7 +44,7 @@ public class LoginTests extends BaseTest {
     public void wrongPasswordTest() {
         open("https://b24-ql072f.bitrix24.ru/");
 
-        loginPage.fillLogin("woltia94@mail.com")
+        loginPage.fillLogin("+7 909 338-12-97")
                 .fillUserPass("12345qwe")
                 .checkVisibilityOfWarning()
                 .checkWarningText("Неверный логин или пароль.");
