@@ -9,7 +9,6 @@ import static io.restassured.config.RestAssuredConfig.newConfig;
 import static io.restassured.http.ContentType.JSON;
 
 public class BaseApi {
-
     protected final static RequestSpecification defaultRequestSpec = new RequestSpecBuilder()
             .setBaseUri(AppConfig.getRestBaseUrl())
             .setContentType(JSON)

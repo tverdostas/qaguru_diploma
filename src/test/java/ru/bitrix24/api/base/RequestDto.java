@@ -4,8 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public interface RequestDto {
+    Gson GSON = new GsonBuilder()
+            .excludeFieldsWithoutExposeAnnotation()
+            .create();
 
-    Gson gson = new GsonBuilder().create();
-
-    String toJson();
+    default String toJson() {
+        return GSON.toJson(this);
+    }
 }
