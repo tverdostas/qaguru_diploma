@@ -1,28 +1,32 @@
 package ru.bitrix24.tests;
 
-import com.codeborne.selenide.SelenideElement;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.TestFactory;
 import ru.bitrix24.BaseTest;
 import ru.bitrix24.enums.MainMenuItems;
 import ru.bitrix24.pageobject.LoginPage;
 import ru.bitrix24.pageobject.MainPage;
 
+import java.util.stream.Stream;
+
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.open;
-import static io.restassured.RestAssured.baseURI;
 
 public class MainPageTests extends BaseTest {
     MainPage mainPage = new MainPage();
     LoginPage loginPage = new LoginPage();
 
-    @ParameterizedTest
-    @EnumSource(MainMenuItems.class)
-    public void AllButtonsPresentInLeftMainMenu(MainMenuItems mainMenuItems){
-
+    @TestFactory
+    Stream<DynamicTest> allButtonsPresentInLeftMainMenu() {
+        // Выполняем логин один раз перед генерацией тестов
         loginPage.successfulLogin();
 
-        SelenideElement menuButton = mainPage.findMenuButton(mainMenuItems.getDisplayName());
-        menuButton.shouldBe(visible);
+        return Stream.of(MainMenuItems.values())
+                .map(item -> DynamicTest.dynamicTest(
+                        "Menu item '" + item.getDisplayName() + "' is visible",
+                        () -> {
+                            var menuButton = mainPage.findMenuButton(item.getDisplayName());
+                            menuButton.shouldBe(visible);
+                        }
+                ));
     }
 }

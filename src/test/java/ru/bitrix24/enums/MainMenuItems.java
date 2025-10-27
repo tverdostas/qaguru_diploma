@@ -23,8 +23,7 @@ public enum MainMenuItems {
     MARKETPLACE("Маркетплейс"),
     FOR_DEVELOPERS("Разработчикам"),
     KEDO_GOSKLYUCH("КЭДО + Госключ"),
-    SIGNATURE("Подпись"),
-    MY_TARIFF("Мой тариф");
+    SIGNATURE("Подпись");
 
     // Геттер для получения названия на русском
     private final String displayName;

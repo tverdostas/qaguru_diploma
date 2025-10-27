@@ -3,55 +3,65 @@ package ru.bitrix24;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Step;
-import io.restassured.RestAssured;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.By;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import ru.bitrix24.config.AppConfig;
+import ru.bitrix24.helpers.Attach;
 import ru.bitrix24.pageobject.LoginPage;
 
 import java.time.Duration;
+import java.util.Map;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.*;
-import static ru.bitrix24.config.AppConfig.getBaseUrl;
 
 public class BaseTest {
-/*    @BeforeAll
-    static void setUp() {
-        RestAssured.baseURI = AppConfig.apiUrl + AppConfig.apiWebhook;
-        Selenide.open(AppConfig.url);
-
-        LoginPage loginPage = new LoginPage();
-        loginPage.successfulLogin();
-    }*/
 
     @BeforeAll
     static void setUp() {
         Configuration.baseUrl = AppConfig.getBaseUrl();
-        Configuration.browser = "chrome";
-        Configuration.browserSize = "1920x1080";
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserVersion = System.getProperty("browserVersion", "128.0");
+        Configuration.browserSize = System.getProperty("windowSize", "1920x1080");
         Configuration.pageLoadStrategy = "normal";
-        // Configuration.headless = true; // если нужно
+        String selenoidPassword = System.getProperty("selenoidPassword");
+        String selenoidUsername = System.getProperty("selenoidUsername");
+        if (selenoidPassword != null) {
+            Configuration.remote = "https://" + selenoidUsername + ":" + selenoidPassword + "@" + System.getProperty("selenoid_url", "selenoid.autotests.cloud/wd/hub");
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                    "enableVNC", true,
+                    "enableVideo", true,
+                    "videoCodec", "libx264",
+                    "videoFrameRate", 24
+            ));
+            Configuration.browserCapabilities = capabilities;
+        }
     }
 
     @BeforeEach
     public void browserConfigurations(){
         open(baseUrl);
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @AfterEach
-    public void closeWebDriver() {
+    public void closeWebDriverAndAddAttach() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
         Selenide.closeWebDriver();
     }
 
     @Step("Переключиться на фрейм")
     public static void switchToFrame(){
-/*        // Дождаться появления контейнера боковой панели
-        $(".side-panel-content-container").shouldBe(visible, Duration.ofSeconds(10));*/
 
         // Дождаться iframe внутри неё
         SelenideElement iframe = $x("//div[@class='side-panel-content-container']//iframe[@class='side-panel-iframe']")
