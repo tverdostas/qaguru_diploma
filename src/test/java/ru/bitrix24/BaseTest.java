@@ -48,6 +48,9 @@ public class BaseTest {
             ));
             Configuration.browserCapabilities = capabilities;
         }
+
+        System.out.println("UI baseUrl = " + System.getProperty("baseUrl"));
+        System.out.println("API url = " + System.getProperty("apiUrl"));
     }
 
     @BeforeEach
