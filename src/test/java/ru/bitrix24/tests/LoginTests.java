@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import ru.bitrix24.BaseTest;
-import ru.bitrix24.config.AppConfig;
 import ru.bitrix24.pageobject.DealsPage;
 import ru.bitrix24.pageobject.LoginPage;
 
@@ -22,7 +21,7 @@ public class LoginTests extends BaseTest {
     })
 
     public void wrongLoginTests(String username, String warningText) {
-        open(AppConfig.getBaseUrl());
+        open(baseUrl);
 
         loginPage.fillLogin(username)
                 .checkVisibilityOfWarning()
@@ -31,19 +30,19 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void successfulLoginTest() {
-        open(AppConfig.getBaseUrl());
+        open(baseUrl);
 
-        loginPage.fillLogin("+7 909 338-12-97")
-                .fillUserPass("Bitrix1910");
+        loginPage.fillLogin(userLogin)
+                .fillUserPass(userPassword);
 
         dealsPage.checkPageTitleVisibility();
     }
 
     @Test
     public void wrongPasswordTest() {
-        open(AppConfig.getBaseUrl());
+        open(baseUrl);
 
-        loginPage.fillLogin("+7 909 338-12-97")
+        loginPage.fillLogin(userLogin)
                 .fillUserPass("12345qwe")
                 .checkVisibilityOfWarning()
                 .checkWarningText("Неверный логин или пароль.");

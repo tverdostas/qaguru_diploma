@@ -54,6 +54,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    systemProperties = System.properties // чтобы не потерять остальные системные свойства
+    systemProperty 'userLogin', project.findProperty('userLogin') ?: ''
+    systemProperty 'userPassword', project.findProperty('userPassword') ?: ''
 }
 
 tasks.withType(Test) {
