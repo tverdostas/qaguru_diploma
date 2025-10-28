@@ -32,7 +32,7 @@ public class BaseTest {
     @BeforeAll
     static void setUp() {
         Configuration.browser = System.getProperty("browser", "chrome");
-        // Configuration.browserVersion = System.getProperty("browserVersion", "128.0");
+        Configuration.browserVersion = System.getProperty("browserVersion", "128.0");
         Configuration.browserSize = System.getProperty("windowSize", "1920x1080");
         Configuration.pageLoadStrategy = "normal";
         String selenoidPassword = System.getProperty("selenoidPassword");
