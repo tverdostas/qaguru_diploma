@@ -9,8 +9,10 @@ import static io.restassured.config.RestAssuredConfig.newConfig;
 import static io.restassured.http.ContentType.JSON;
 
 public class BaseApi {
+
+    private static final String baseApiUrl = System.getProperty("baseApiUrl");
     protected final static RequestSpecification defaultRequestSpec = new RequestSpecBuilder()
-            .setBaseUri(baseUrl)
+            .setBaseUri(baseApiUrl)
             .setContentType(JSON)
             .build()
             .config(newConfig().encoderConfig(encoderConfig().defaultContentCharset("UTF-8")));
