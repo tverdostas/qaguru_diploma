@@ -18,7 +18,7 @@ public class MainPageTests extends BaseTest {
     @TestFactory
     Stream<DynamicTest> allButtonsPresentInLeftMainMenu() {
         // Выполняем логин один раз перед генерацией тестов
-        loginPage.successfulLogin();
+        successfulLogin();
 
         return Stream.of(MainMenuItems.values())
                 .map(item -> DynamicTest.dynamicTest(
