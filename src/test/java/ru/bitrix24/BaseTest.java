@@ -27,7 +27,7 @@ public class BaseTest {
     protected String baseUrl = System.getProperty("baseUrl");
     protected String userLogin = System.getProperty("userLogin");
     protected String userPassword = System.getProperty("userPassword");
-    protected String dealsUrl = System.getProperty("userPassword");
+    protected String dealsUrl = System.getProperty("dealsUrl");
 
     @BeforeAll
     static void setUp() {

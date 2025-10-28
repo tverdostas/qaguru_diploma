@@ -5,7 +5,6 @@ import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPage {
 
@@ -24,6 +23,8 @@ public class LoginPage {
     public SelenideElement inputPasswordWarning() {
         return $x("//div[contains(@class, 'b24net-input-warning')]");
     }
+    protected String userLogin = System.getProperty("userLogin");
+    protected String userPassword = System.getProperty("userPassword");
 
     @Step
     public LoginPage fillLogin(String login) {
@@ -56,8 +57,8 @@ public class LoginPage {
     @Step
     public LoginPage successfulLogin() {
 
-        fillLogin("+7 909 338-12-97")
-                .fillUserPass("Bitrix1910");
+        fillLogin(userLogin)
+                .fillUserPass(userPassword);
 
         return this;
     }

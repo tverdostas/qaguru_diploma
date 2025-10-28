@@ -32,7 +32,7 @@ public class DealFrameTests extends BaseTest {
 
         sleep(30000);
 
-        open(baseUrl + deal.getId() + "/");
+        open(dealsUrl + deal.getId() + "/");
         switchToFrame();
 
         return Arrays.stream(TimelineActions.values())
