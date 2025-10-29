@@ -7,6 +7,7 @@ import ru.bitrix24.api.tasks.*;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import java.time.OffsetDateTime;
 
 public class TaskWithChecklistTest {
 
@@ -54,6 +55,14 @@ public class TaskWithChecklistTest {
         assertThat(task.getCreatedBy()).isEqualTo("1");
         assertThat(task.getResponsibleId()).isEqualTo("2"); // или из конфига
         assertThat(task.getId()).isEqualTo(createdTaskId);
+
+        // Сравнение дедлайна с учётом часового пояса
+        OffsetDateTime expectedDeadline = OffsetDateTime.parse(deadline);
+        OffsetDateTime actualDeadline = OffsetDateTime.parse(task.getDeadline());
+
+        assertThat(actualDeadline)
+                .as("Дедлайн задачи")
+                .isEqualTo(expectedDeadline);
 
         // 6. Проверка увеличения количества задач
         int finalTaskCount = taskApi.getTaskCount();
