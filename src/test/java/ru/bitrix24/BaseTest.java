@@ -23,7 +23,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class BaseTest {
 
-    protected String baseUrl = System.getProperty("baseUrl");
+    protected static String baseUrl = System.getProperty("baseUrl");
     protected String userLogin = System.getProperty("userLogin");
     protected String userPassword = System.getProperty("userPassword");
     protected String dealsUrl = System.getProperty("dealsUrl");
@@ -34,6 +34,7 @@ public class BaseTest {
         Configuration.browserVersion = System.getProperty("browserVersion", "128.0");
         Configuration.browserSize = System.getProperty("windowSize", "1920x1080");
         Configuration.pageLoadStrategy = "normal";
+        Configuration.baseUrl = baseUrl;
         String selenoidPassword = System.getProperty("selenoidPassword");
         String selenoidUsername = System.getProperty("selenoidUsername");
         if (selenoidPassword != null) {
