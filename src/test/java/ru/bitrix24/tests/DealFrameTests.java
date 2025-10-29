@@ -31,7 +31,8 @@ public class DealFrameTests extends BaseTest {
 
         sleep(30000);
 
-        open("/crm/deal/details/" + deal.getId() + "/");
+        open(baseUrl + "/crm/deal/details/" + deal.getId() + "/");
+        System.out.println();
         switchToFrame();
 
         return Arrays.stream(TimelineActions.values())
@@ -54,7 +55,7 @@ public class DealFrameTests extends BaseTest {
 
         sleep(30000);
 
-        open("/crm/deal/details/" + deal.getId() + "/");
+        open(baseUrl + "/crm/deal/details/" + deal.getId() + "/");
         switchToFrame();
 
         return Arrays.stream(DealsStatus.values())
