@@ -23,7 +23,6 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class BaseTest {
 
-
     protected String baseUrl = System.getProperty("baseUrl");
     protected String userLogin = System.getProperty("userLogin");
     protected String userPassword = System.getProperty("userPassword");

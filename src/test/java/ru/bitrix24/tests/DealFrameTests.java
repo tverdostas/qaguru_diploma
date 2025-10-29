@@ -7,7 +7,6 @@ import ru.bitrix24.BaseTest;
 import ru.bitrix24.api.deals.Deal;
 import ru.bitrix24.api.steps.DealsSteps;
 import ru.bitrix24.components.DealsIframe;
-import ru.bitrix24.config.AppConfig;
 import ru.bitrix24.enums.DealsStatus;
 import ru.bitrix24.enums.TimelineActions;
 

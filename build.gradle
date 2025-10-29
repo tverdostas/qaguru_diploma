@@ -57,9 +57,9 @@ test {
     systemProperties = System.properties // чтобы не потерять остальные системные свойства
     systemProperty 'userLogin', project.findProperty('userLogin') ?: ''
     systemProperty 'userPassword', project.findProperty('userPassword') ?: ''
-    systemProperty 'baseUrl', project.findProperty('userLogin') ?: ''
-    systemProperty 'dealsUrl', project.findProperty('userPassword') ?: ''
-    systemProperty 'apiWebhook', project.findProperty('userLogin') ?: ''
+    systemProperty 'baseUrl', project.findProperty('baseUrl') ?: ''
+    systemProperty 'dealsUrl', project.findProperty('dealsUrl') ?: ''
+    systemProperty 'apiWebhook', project.findProperty('apiWebhook') ?: ''
 }
 
 tasks.withType(Test) {

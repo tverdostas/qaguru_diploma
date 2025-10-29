@@ -13,7 +13,6 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class MainPageTests extends BaseTest {
     MainPage mainPage = new MainPage();
-    LoginPage loginPage = new LoginPage();
 
     @TestFactory
     Stream<DynamicTest> allButtonsPresentInLeftMainMenu() {
