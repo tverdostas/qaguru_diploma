@@ -1,5 +1,6 @@
 package ru.bitrix24.tests;
 
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 import ru.bitrix24.BaseTest;
@@ -17,7 +18,7 @@ public class MainPageTests extends BaseTest {
     @TestFactory
     Stream<DynamicTest> allButtonsPresentInLeftMainMenu() {
         // Выполняем логин один раз перед генерацией тестов
-        successfulLogin();
+        Allure.step("Выполнить успешный логин в UI", () -> successfulLogin());
 
         return Stream.of(MainMenuItems.values())
                 .map(item -> DynamicTest.dynamicTest(

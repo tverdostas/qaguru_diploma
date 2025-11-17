@@ -1,5 +1,6 @@
 package ru.bitrix24.tests.api;
 
+import io.qameta.allure.Allure;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.Test;
 import ru.bitrix24.BaseTest;
@@ -25,36 +26,49 @@ public class DealsCreateApiTests {
                 .order(Map.of("DATE_CREATE", "DESC"))
                 .build();
 
-        // Получаем начальное количество сделок
-        DealListResponseDto initialResponse = dealsApi.getListOfDeals(dealsRequest);
-        int initialDealCount = initialResponse.getResult().size();
-        System.out.println("Initial deal count: " + initialDealCount);
+        int initialDealCount = Allure.step("Получить начальное количество сделок", () -> {
+            DealListResponseDto initialResponse = dealsApi.getListOfDeals(dealsRequest);
+            int count = initialResponse.getResult().size();
+            System.out.println("Initial deal count: " + count);
+            return count;
+        });
 
-        // Создаем сделку через апи
-        DealCreateResponseDto createResponse = dealsApi.createDeal(
-                DealCreateRequestDto.builder()
-                        .fields(Map.of("TITLE", "Сделка создано автотестом"))
-                        .build()
-        );
+        createdDealId = Allure.step("Создать новую сделку через API", () -> {
+            DealCreateResponseDto createResponse = dealsApi.createDeal(
+                    DealCreateRequestDto.builder()
+                            .fields(Map.of("TITLE", "Сделка создано автотестом"))
+                            .build()
+            );
+            String id = String.valueOf(createResponse.getResult());
+            System.out.println("Created deal ID: " + id);
+            return id;
+        });
 
-        createdDealId = String.valueOf(createResponse.getResult());
+        int finalDealCount = Allure.step("Получить количество сделок после создания", () -> {
+            DealListResponseDto finalResponse = dealsApi.getListOfDeals(dealsRequest);
+            int count = finalResponse.getResult().size();
+            System.out.println("Final deal count: " + count);
+            return count;
+        });
 
-        // 8. Запрашиваем список снова
-        DealListResponseDto finalResponse = dealsApi.getListOfDeals(dealsRequest);
-        int finalDealCount = finalResponse.getResult().size();
-        System.out.println("Final deal count: " + finalDealCount);
+        Allure.step("Проверить, что количество сделок увеличилось на 1", () -> {
+            assertThat(finalDealCount).isEqualTo(initialDealCount + 1);
+        });
 
-        assertThat(finalDealCount).isEqualTo(initialDealCount + 1);
+        String finalCreatedDealId = createdDealId;
+        Allure.step("Удалить созданную сделку через API", () -> {
+            boolean deleted = dealsApi.deleteDeal(finalCreatedDealId);
+            assertThat(deleted).isTrue();
+        });
 
-        System.out.println("Created deal ID: " + createdDealId);
+        int afterDeleteCount = Allure.step("Получить количество сделок после удаления", () -> {
+            DealListResponseDto afterDeleteResponse = dealsApi.getListOfDeals(dealsRequest);
+            int count = afterDeleteResponse.getResult().size();
+            return count;
+        });
 
-        // 10. Удаляем сделку через API
-        boolean deleted = dealsApi.deleteDeal(createdDealId);
-        assertThat(deleted).isTrue();
-
-        // 11. Проверяем, что сделка удалена
-        DealListResponseDto afterDeleteResponse = dealsApi.getListOfDeals(dealsRequest);
-        int afterDeleteCount = afterDeleteResponse.getResult().size();
-        assertThat(afterDeleteCount).isEqualTo(initialDealCount); // вернулись к исходному количеству
-    }
+        Allure.step("Проверить, что количество сделок вернулось к исходному", () -> {
+            assertThat(afterDeleteCount).isEqualTo(initialDealCount); // вернулись к исходному количеству
+        });
+}
 }

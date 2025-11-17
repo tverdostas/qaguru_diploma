@@ -1,5 +1,6 @@
 package ru.bitrix24.tests.api;
 
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ public class TaskWithChecklistTest {
     public void shouldCreateTaskWithChecklistAndVerifyFields() {
 
         // 1. Получить текущее количество задач
-        int initialTaskCount = taskApi.getTaskCount();
+        int initialTaskCount = Allure.step("Получить начальное количество задач", () -> taskApi.getTaskCount());
 
         // 2. Создать задачу
         String title = "Задача с чек-листом — автотест " + System.currentTimeMillis();
@@ -44,32 +45,48 @@ public class TaskWithChecklistTest {
                         "RESPONSIBLE_ID", responsibleId))
                 .build();
 
-        TaskCreateResponseDto createResponse = taskApi.createTask(createRequest);
-        String createdTaskId = createResponse.getResult().getTask().getId();
-        assertThat(createdTaskId).isNotNull().isNotEmpty();
+        TaskCreateResponseDto createResponse = Allure.step("Создать задачу через API", () -> taskApi.createTask(createRequest));
+
+        String createdTaskId = Allure.step("Получить ID созданной задачи", () -> {
+            String id = createResponse.getResult().getTask().getId();
+            assertThat(id).isNotNull().isNotEmpty();
+            System.out.println("Created task ID: " + id); // Опционально: логирование
+            return id;
+        });
 
         // 4. Получить задачу по ID
-        TaskListResponseDto taskListResponse = taskApi.getTaskById(createdTaskId);
+        TaskListResponseDto taskListResponse = Allure.step("Получить созданную задачу по ID", () -> taskApi.getTaskById(createdTaskId));
 
         // 5. Проверки
-        assertThat(taskListResponse.getResult().getTasks()).hasSize(1);
+        Allure.step("Проверить, что в ответе одна задача", () -> {
+            assertThat(taskListResponse.getResult().getTasks()).hasSize(1);
+        });
+
         TaskListResponseDto.Task task = taskListResponse.getResult().getTasks().get(0);
 
-        assertThat(task.getTitle()).isEqualTo(title);
-        assertThat(task.getDeadline()).isNotNull();
-        assertThat(task.getCreatedBy()).isEqualTo("1");
-        assertThat(task.getResponsibleId()).isEqualTo("2"); // или из конфига
-        assertThat(task.getId()).isEqualTo(createdTaskId);
+        Allure.step("Проверить поля задачи", () -> {
+            assertThat(task.getTitle()).isEqualTo(title);
+            assertThat(task.getDeadline()).isNotNull();
+            assertThat(task.getCreatedBy()).isEqualTo("1");
+            assertThat(task.getResponsibleId()).isEqualTo("2"); // или из конфига
+            assertThat(task.getId()).isEqualTo(createdTaskId);
+        });
 
         // 6. Проверка увеличения количества задач
-        int finalTaskCount = taskApi.getTaskCount();
-        assertThat(finalTaskCount).isEqualTo(initialTaskCount + 1);
+        int finalTaskCount = Allure.step("Получить количество задач после создания", () -> taskApi.getTaskCount());
+
+        Allure.step("Проверить, что количество задач увеличилось на 1", () -> {
+            assertThat(finalTaskCount).isEqualTo(initialTaskCount + 1);
+        });
 
         // 7. Удалить созданную задачу
-        taskApi.deleteTask(createdTaskId);
+        Allure.step("Удалить созданную задачу через API", () -> taskApi.deleteTask(createdTaskId));
 
         // 8. Проверка количества задач
-        int finalTaskCount2 = taskApi.getTaskCount();
-        assertThat(finalTaskCount2).isEqualTo(initialTaskCount);
+        int finalTaskCount2 = Allure.step("Получить количество задач после удаления", () -> taskApi.getTaskCount());
+
+        Allure.step("Проверить, что количество задач вернулось к исходному", () -> {
+            assertThat(finalTaskCount2).isEqualTo(initialTaskCount);
+        });
     }
 }

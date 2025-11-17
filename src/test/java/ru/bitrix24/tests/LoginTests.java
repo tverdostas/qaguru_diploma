@@ -1,6 +1,7 @@
 package ru.bitrix24.tests;
 
 import com.codeborne.selenide.Configuration;
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -31,21 +32,25 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void successfulLoginTest() {
-        open(Configuration.baseUrl);
+        Allure.step("Открыть главную страницу", () -> open(Configuration.baseUrl));
 
-        loginPage.fillLogin(config.userLogin())
-                .fillUserPass(config.userPassword());
+        Allure.step("Заполнить логин и пароль", () -> {
+            loginPage.fillLogin(config.userLogin())
+                    .fillUserPass(config.userPassword());
+        });
 
-        dealsPage.checkPageTitleVisibility();
+        Allure.step("Проверить видимость заголовка страницы сделок", () -> dealsPage.checkPageTitleVisibility());
     }
 
     @Test
     public void wrongPasswordTest() {
-        open(Configuration.baseUrl);
+        Allure.step("Открыть главную страницу", () -> open(Configuration.baseUrl));
 
-        loginPage.fillLogin(config.userLogin())
-                .fillUserPass("12345qwe")
-                .checkVisibilityOfWarning()
-                .checkWarningText("Неверный логин или пароль.");
+        Allure.step("Заполнить логин и неправильный пароль, проверить предупреждение", () -> {
+            loginPage.fillLogin(config.userLogin())
+                    .fillUserPass("12345qwe")
+                    .checkVisibilityOfWarning()
+                    .checkWarningText("Неверный логин или пароль.");
+        });
     }
 }
