@@ -3,6 +3,7 @@ package ru.bitrix24.api.clients;
 import ru.bitrix24.api.deals.DealListResponseDto;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import ru.bitrix24.config.AppConfig;
 
 import java.util.Map;
 
@@ -10,8 +11,9 @@ import static io.restassured.RestAssured.given;
 
 public class Bitrix24ApiClient {
 
-    private String baseUrl = "https://b24-ql072f.bitrix24.ru/";        // например: "https://portal-test.kuber.3l.ru/rest/2204"
-    private String webhookToken = "rest/1/8yxs2pfnvwxc05av/";   // например: "password2Kub0057"
+    protected static AppConfig config;
+    private String baseUrl;
+    private String webhookToken;
 
     public Bitrix24ApiClient(String baseUrl, String webhookToken) {
         this.baseUrl = baseUrl;
@@ -32,7 +34,7 @@ public class Bitrix24ApiClient {
      * @param queryParams параметры запроса: order, filter, start и т.д.
      */
     public DealListResponseDto getDealList(Map<String, Object> queryParams) {
-        String endpoint = webhookToken + "/crm.deal.list";
+        String endpoint = config.apiWebhook() + "/crm.deal.list";
 
         Response response = given()
                 .queryParams(queryParams != null ? queryParams : Map.of())

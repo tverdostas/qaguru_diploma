@@ -20,16 +20,21 @@ import java.util.Map;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.*;
+import org.aeonbits.owner.ConfigFactory;
 
 public class BaseTest {
 
-    protected static String baseUrl = System.getProperty("baseUrl");
-    protected String userLogin = System.getProperty("userLogin");
-    protected String userPassword = System.getProperty("userPassword");
-    protected String dealsUrl = System.getProperty("dealsUrl");
+    protected static AppConfig config;
+
+    protected String userLogin;
+    protected String userPassword;
+    protected String dealsUrl;
 
     @BeforeAll
     static void setUp() {
+
+        config = ConfigFactory.create(AppConfig.class, System.getProperties());
+
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.browserVersion = System.getProperty("browserVersion", "128.0");
         Configuration.browserSize = System.getProperty("windowSize", "1920x1080");

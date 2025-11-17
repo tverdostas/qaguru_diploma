@@ -1,5 +1,6 @@
 package ru.bitrix24.tests;
 
+import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -21,7 +22,7 @@ public class LoginTests extends BaseTest {
     })
 
     public void wrongLoginTests(String username, String warningText) {
-        open(baseUrl);
+        open(Configuration.baseUrl);
 
         loginPage.fillLogin(username)
                 .checkVisibilityOfWarning()
@@ -30,19 +31,19 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void successfulLoginTest() {
-        open(baseUrl);
+        open(Configuration.baseUrl);
 
-        loginPage.fillLogin(userLogin)
-                .fillUserPass(userPassword);
+        loginPage.fillLogin(config.userLogin())
+                .fillUserPass(config.userPassword());
 
         dealsPage.checkPageTitleVisibility();
     }
 
     @Test
     public void wrongPasswordTest() {
-        open(baseUrl);
+        open(Configuration.baseUrl);
 
-        loginPage.fillLogin(userLogin)
+        loginPage.fillLogin(config.userLogin())
                 .fillUserPass("12345qwe")
                 .checkVisibilityOfWarning()
                 .checkWarningText("Неверный логин или пароль.");

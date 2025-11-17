@@ -1,5 +1,6 @@
 package ru.bitrix24.tests;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ public class DealFrameTests extends BaseTest {
         successfulLogin();
         sleep(30000); // ⚠️ лучше заменить на ожидания, но оставим как есть
 
-        open(baseUrl + "crm/deal/details/" + deal.getId() + "/");
+        open(Configuration.baseUrl + "crm/deal/details/" + deal.getId() + "/");
         switchToFrame();
 
         // Проверка всех табов через soft assertions
@@ -52,7 +53,7 @@ public class DealFrameTests extends BaseTest {
         successfulLogin();
         sleep(30000);
 
-        open(baseUrl + "crm/deal/details/" + deal.getId() + "/");
+        open(Configuration.baseUrl + "crm/deal/details/" + deal.getId() + "/");
         switchToFrame();
 
         // Проверка всех стадий через soft assertions

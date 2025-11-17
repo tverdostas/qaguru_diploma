@@ -1,16 +1,17 @@
 package ru.bitrix24.api.base;
 
+import com.codeborne.selenide.Configuration;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
+import ru.bitrix24.config.AppConfig;
 
-import static com.codeborne.selenide.Configuration.baseUrl;
 import static io.restassured.config.EncoderConfig.encoderConfig;
 import static io.restassured.config.RestAssuredConfig.newConfig;
 import static io.restassured.http.ContentType.JSON;
 
 public class BaseApi {
-
-    private static final String baseApiUrl = System.getProperty("baseApiUrl");
+    protected static AppConfig config;
+    private static final String baseApiUrl = Configuration.baseUrl + "/" + config.apiWebhook() + "/";
     protected final static RequestSpecification defaultRequestSpec = new RequestSpecBuilder()
             .setBaseUri(baseApiUrl)
             .setContentType(JSON)

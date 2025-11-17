@@ -5,13 +5,11 @@ import ru.bitrix24.BaseTest;
 import ru.bitrix24.pageobject.DealsPage;
 import ru.bitrix24.pageobject.LoginPage;
 
-import static com.codeborne.selenide.Selenide.open;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DealsTableTests extends BaseTest {
     
     DealsPage dealsPage = new DealsPage();
-    LoginPage loginPage = new LoginPage();
     
     @Test
     public void checkColumnTotalPrice(){
