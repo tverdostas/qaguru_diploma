@@ -23,8 +23,6 @@ public class LoginPage {
     public SelenideElement inputPasswordWarning() {
         return $x("//div[contains(@class, 'b24net-input-warning')]");
     }
-    protected String userLogin = System.getProperty("userLogin");
-    protected String userPassword = System.getProperty("userPassword");
 
     @Step
     public LoginPage fillLogin(String login) {
@@ -55,10 +53,10 @@ public class LoginPage {
     }
 
     @Step
-    public LoginPage successfulLogin() {
+    public LoginPage successfulLogin(String login, String password) {
 
-        fillLogin(userLogin)
-                .fillUserPass(userPassword);
+        fillLogin(login)
+                .fillUserPass(password);
 
         return this;
     }

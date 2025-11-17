@@ -88,6 +88,6 @@ public class BaseTest {
     @Step("Успешный логин")
     public void successfulLogin(){
         LoginPage loginPage = new LoginPage();
-        loginPage.successfulLogin();
+        loginPage.successfulLogin(config.userLogin(), config.userPassword());
     }
 }
