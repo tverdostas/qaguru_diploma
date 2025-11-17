@@ -1,5 +1,6 @@
 package ru.bitrix24.tests.api;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bitrix24.api.tasks.TaskApi;
@@ -13,11 +14,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class TaskWithChecklistTest {
 
-    private final TaskApi taskApi = new TaskApi();
+    private TaskApi taskApi;
+
+    @BeforeEach
+    public void setUp() {
+        this.taskApi = new TaskApi();
+    }
 
     @Test
     @DisplayName("Создать задачу с чек-листом и проверить её поля и наличие чек-листа")
     public void shouldCreateTaskWithChecklistAndVerifyFields() {
+
         // 1. Получить текущее количество задач
         int initialTaskCount = taskApi.getTaskCount();
 

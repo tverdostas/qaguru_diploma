@@ -20,14 +20,12 @@ public class GetDealRequestDto implements RequestDto {
 
     private static final Gson gson = new Gson();
 
-    // В Bitrix24 сортировка — это просто мапа вида {"поле": "направление"}
     @Getter
     @Builder
     @AllArgsConstructor
     public static class Order {
-        // Пример: DATE_CREATE -> "DESC"
         @Expose
-        private final String DATE_CREATE; // можно сделать Map<String, String>, но для простоты — фиксированное поле
+        private final String DATE_CREATE;
     }
 
     @Getter
@@ -36,12 +34,8 @@ public class GetDealRequestDto implements RequestDto {
     public static class Filter {
         @Expose
         private final String CLOSED;
-
-        // Добавьте другие поля по мере необходимости: STAGE_ID, ASSIGNED_BY_ID и т.д.
     }
 
-    // Этот метод toJson() больше не подходит для прямой отправки в Bitrix!
-    // Лучше не использовать его для запроса — см. пояснение ниже.
     @Override
     public String toJson() {
         return gson.toJson(this);

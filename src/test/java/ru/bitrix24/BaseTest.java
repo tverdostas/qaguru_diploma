@@ -26,10 +26,6 @@ public class BaseTest {
 
     protected static AppConfig config;
 
-    protected String userLogin;
-    protected String userPassword;
-    protected String dealsUrl;
-
     @BeforeAll
     static void setUp() {
 
@@ -39,7 +35,8 @@ public class BaseTest {
         Configuration.browserVersion = System.getProperty("browserVersion", "128.0");
         Configuration.browserSize = System.getProperty("windowSize", "1920x1080");
         Configuration.pageLoadStrategy = "normal";
-        Configuration.baseUrl = baseUrl;
+        Configuration.baseUrl = config.baseUrl();
+
         String selenoidPassword = System.getProperty("selenoidPassword");
         String selenoidUsername = System.getProperty("selenoidUsername");
         if (selenoidPassword != null) {
@@ -54,8 +51,12 @@ public class BaseTest {
             Configuration.browserCapabilities = capabilities;
         }
 
-        System.out.println("UI baseUrl = " + System.getProperty("baseUrl"));
-        System.out.println("API url = " + System.getProperty("apiUrl"));
+// Улучшенное логирование: используем значения из config
+        System.out.println("UI baseUrl (from AppConfig) = " + config.baseUrl());
+        // Выводим apiWebhook (или baseApiUrl), если нужно проверить его значение
+        System.out.println("API Webhook/URL (from AppConfig) = " + config.apiWebhook()); // Или config.baseApiUrl()
+        // Выводим apiUrl, если он используется где-то ещё, но он, скорее всего, null
+        System.out.println("API url (from System.getProperty) = " + System.getProperty("apiUrl")); // Это, скорее всего, null
     }
 
     @BeforeEach

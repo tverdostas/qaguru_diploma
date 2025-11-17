@@ -18,7 +18,7 @@ public class TaskApi extends BaseApi {
                 .spec(defaultRequestSpec)
                 .body(request.toJson())
                 .when()
-                .post("tasks.task.add") // или твой endpoint
+                .post("tasks.task.add")
                 .then()
                 .statusCode(200)
                 .extract().asString();

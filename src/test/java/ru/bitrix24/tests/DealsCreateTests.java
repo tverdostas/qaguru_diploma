@@ -1,6 +1,7 @@
 package ru.bitrix24.tests;
 
 import com.codeborne.selenide.Selenide;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 import ru.bitrix24.BaseTest;
@@ -17,8 +18,14 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class DealsCreateTests extends BaseTest {
 
-    DealsPage dealsPage = new DealsPage();
-    DealsApi dealsApi = new DealsApi();
+    DealsPage dealsPage;
+    DealsApi dealsApi;
+
+    @BeforeEach // Инициализируем их перед каждым тестом, после setUp() в BaseTest
+    public void setUpDealsTest() {
+        dealsPage = new DealsPage();
+        dealsApi = new DealsApi();
+    }
 
     @Test
     public void dealIsSuccessfullyCreatedByButton() {
