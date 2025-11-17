@@ -2,7 +2,10 @@ package ru.bitrix24.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bitrix24.BaseTest;
 import ru.bitrix24.api.deals.Deal;
@@ -14,10 +17,13 @@ import ru.bitrix24.enums.TimelineActions;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.sleep;
 
+@Epic("Проверка наличия элементов во фрейме")
+@Feature("Проверка стадий сделки")
 public class DealFrameTests extends BaseTest {
 
     private final DealsIframe dealsIframe = new DealsIframe();
 
+    @DisplayName("Все табы отображены во фрейме сделки")
     @Test
     void allActionsInTimelineAreDisplayedInDealIframe() {
         // Подготовка: получаем сделку и открываем страницу
@@ -44,6 +50,7 @@ public class DealFrameTests extends BaseTest {
         softly.assertAll();
     }
 
+    @DisplayName("Все стадии отображены во фрейме сделки")
     @Test
     void allStagesInDealIframeAreVisible() {
         // Подготовка: получаем сделку и открываем страницу

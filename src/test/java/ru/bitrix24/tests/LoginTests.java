@@ -2,8 +2,11 @@ package ru.bitrix24.tests;
 
 import com.codeborne.selenide.Configuration;
 import io.qameta.allure.Allure;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -14,6 +17,8 @@ import ru.bitrix24.pageobject.LoginPage;
 
 import static com.codeborne.selenide.Selenide.open;
 
+@Epic("Логин и авторизация")
+@Feature("Проверки логина")
 public class LoginTests extends BaseTest {
 
     LoginPage loginPage;
@@ -31,6 +36,7 @@ public class LoginTests extends BaseTest {
             "123, Используйте e-mail или телефон"
     })
 
+    @DisplayName("Получение ошибок при неверной комбинации логина и пароля")
     public void wrongLoginTests(String username, String warningText) {
         open(Configuration.baseUrl);
 
@@ -40,6 +46,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Успешный логин в систему")
     public void successfulLoginTest() {
         Allure.step("Открыть главную страницу", () -> open(Configuration.baseUrl));
 
@@ -52,6 +59,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Получение ошибки при вводе неправильного пароля")
     public void wrongPasswordTest() {
         Allure.step("Открыть главную страницу", () -> open(Configuration.baseUrl));
 

@@ -2,7 +2,10 @@ package ru.bitrix24.tests;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Allure;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 import ru.bitrix24.BaseTest;
@@ -16,6 +19,8 @@ import java.util.Map;
 
 import static com.codeborne.selenide.Condition.visible;
 
+@Epic("Создание элементов CRM")
+@Feature("Создание сделки")
 public class DealsCreateTests extends BaseTest {
 
     DealsPage dealsPage;
@@ -28,7 +33,8 @@ public class DealsCreateTests extends BaseTest {
     }
         // Предполагается, что dealsPage, dealsApi, switchToFrame, successfulLogin инициализированы/доступны
 
-        @Test
+    @DisplayName("Сделка успешно создается через UI")
+    @Test
         public void dealIsSuccessfullyCreatedByButton() {
 
             String createdDealId = null; // будем хранить ID созданной сделки
