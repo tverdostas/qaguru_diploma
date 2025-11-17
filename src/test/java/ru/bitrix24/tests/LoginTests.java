@@ -2,10 +2,13 @@ package ru.bitrix24.tests;
 
 import com.codeborne.selenide.Configuration;
 import io.qameta.allure.Allure;
+import org.aeonbits.owner.ConfigFactory;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import ru.bitrix24.BaseTest;
+import ru.bitrix24.config.AppConfig;
 import ru.bitrix24.pageobject.DealsPage;
 import ru.bitrix24.pageobject.LoginPage;
 
@@ -13,8 +16,14 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class LoginTests extends BaseTest {
 
-    LoginPage loginPage = new LoginPage();
-    DealsPage dealsPage = new DealsPage();
+    LoginPage loginPage;
+    DealsPage dealsPage;
+
+    @BeforeEach
+    public void setUpPages() {
+        loginPage = new LoginPage();
+        dealsPage = new DealsPage();
+    }
 
     @ParameterizedTest
     @CsvSource({
