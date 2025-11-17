@@ -27,7 +27,7 @@ public class DealFrameTests extends BaseTest {
         successfulLogin();
         sleep(30000); // ⚠️ лучше заменить на ожидания, но оставим как есть
 
-        open(Configuration.baseUrl + "crm/deal/details/" + deal.getId() + "/");
+        open(Configuration.baseUrl + "/crm/deal/details/" + deal.getId() + "/");
         switchToFrame();
 
         // Проверка всех табов через soft assertions
@@ -53,7 +53,7 @@ public class DealFrameTests extends BaseTest {
         successfulLogin();
         sleep(30000);
 
-        open(Configuration.baseUrl + "crm/deal/details/" + deal.getId() + "/");
+        open(Configuration.baseUrl + "/crm/deal/details/" + deal.getId() + "/");
         switchToFrame();
 
         // Проверка всех стадий через soft assertions
