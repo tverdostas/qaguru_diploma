@@ -7,7 +7,6 @@ import ru.bitrix24.api.tasks.TaskCreateRequestDto;
 import ru.bitrix24.api.tasks.TaskCreateResponseDto;
 import ru.bitrix24.api.tasks.TaskListResponseDto;
 
-import java.time.OffsetDateTime;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;

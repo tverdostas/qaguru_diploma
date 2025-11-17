@@ -1,27 +1,19 @@
 package ru.bitrix24.config;
 
-import lombok.Getter;
+import org.aeonbits.owner.Config;
 
-@Getter
-public class AppConfig {
+public interface AppConfig extends Config {
 
-    private static String userLogin;
-    private static String userPassword;
+    @Key("base.url")
+    @DefaultValue("https://b24-ql072f.bitrix24.ru")
+    String baseUrl();
 
-    public static void initCredentials() {
-        String url = System.getProperty("BASE_URL");
-        if (url == null || url.isBlank()) {
-            throw new IllegalStateException("BASE_URL не задан!");
-        }
+    @Key("user.login")
+    String userLogin();
 
-        userLogin = System.getProperty("LOGIN");
-        userPassword = System.getProperty("PASSWORD");
+    @Key("user.password")
+    String userPassword();
 
-        if (userLogin == null || userLogin.isBlank()) {
-            throw new IllegalStateException("LOGIN не задан!");
-        }
-        if (userPassword == null || userPassword.isBlank()) {
-            throw new IllegalStateException("PASSWORD не задан!");
-        }
-    }
+    @Key("api.webhook")
+    String apiWebhook();
 }
