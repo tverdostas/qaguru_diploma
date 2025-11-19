@@ -16,15 +16,15 @@
 
 ## Технологии и инструменты:
 <div align="center">
-<a href="https://www.java.com/"><img alt="Java" height="60" src="images/icons/java_logo.png" width="60"/></a>
+<a href="https://www.java.com/"><img alt="Java" height="65" src="images/icons/java_logo.png" width="65"/></a>
 <a href="https://www.jetbrains.com/idea/"><img alt="InteliJ IDEA" height="50" src="images/icons/intellij-idea.png" width="50"/></a>
 <a href="https://gradle.org/"><img alt="Gradle" height="50" src="images/icons/gradle_logo_icon.png" width="50"/></a>  
-<a href="https://junit.org/junit5/"><img alt="JUnit 5" height="50" src="images/icons/junit_5.png" width="50"/></a>
+<a href="https://junit.org/junit5/"><img alt="JUnit 5" height="45" src="images/icons/junit_5.png" width="45"/></a>
 <a href="https://selenide.org/"><img alt="Selenide" height="50" src="images/icons/selenide.png" width="50"/></a>
 <a href="https://aerokube.com/selenoid/"><img alt="Selenoid" height="50" src="images/icons/Selenoid.png" width="50"/></a>
-<a href="https://rest-assured.io/"><img alt="RestAssured" height="50" src="images/icons/RestAssured.png" width="50"/></a>
+<a href="https://rest-assured.io/"><img alt="RestAssured" height="45" src="images/icons/RestAssured.png" width="45"/></a>
 <a href="https://www.jenkins.io/"><img alt="Jenkins" height="50" src="images/icons/jenkins_2.png" width="50"/></a>
-<a href="https://github.com/allure-framework/"><img alt="Allure Report" height="50" src="images/icons/allure_report.png" width="50"/></a>
-<a href="https://qameta.io/"><img alt="Allure TestOps" height="50" src="images/icons/allure_testops.png" width="50"/></a> 
-<a href="https://telegram.org/"><img alt="Telegram" height="50" src="images/icons/Telegram.png" width="50"/></a>
+<a href="https://github.com/allure-framework/"><img alt="Allure Report" height="45" src="images/icons/allure_report.png" width="45"/></a>
+<a href="https://qameta.io/"><img alt="Allure TestOps" height="45" src="images/icons/allure_testops.png" width="45"/></a> 
+<a href="https://telegram.org/"><img alt="Telegram" height="45" src="images/icons/Telegram.png" width="45"/></a>
 </div>
