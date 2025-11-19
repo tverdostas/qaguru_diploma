@@ -28,3 +28,13 @@
 <a href="https://qameta.io/"><img alt="Allure TestOps" height="45" src="images/icons/allure_testops.png" width="45"/></a> 
 <a href="https://telegram.org/"><img alt="Telegram" height="45" src="images/icons/Telegram.png" width="45"/></a>
 </div>
+
+<div style="border-left: 3px solid #ddd; padding-left: 16px; margin: 20px 0; color: #333;">
+  <strong>Технологии</strong><br>
+  • Автотесты написаны на языке Java<br>
+  • Инструмент сборки Gradle<br>
+  • Тестовые фреймворки JUnit 5 и REST-assured<br>
+  • Удаленный запуск реализован на Jenkins<br>
+  • Отчеты генерируются с использованием Allure report<br>
+  • Добавлена интеграция с Allure TestOps<br>
+</div>
