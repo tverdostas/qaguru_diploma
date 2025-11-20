@@ -38,3 +38,22 @@
   • Отчеты генерируются с использованием Allure report<br>
   • Добавлена интеграция с Allure TestOps<br>
 </div>
+
+## Примеры тест-кейсов / проверок:
+✅ Проверки меню: все пункты меню отображаются<br>
+✅ Создание элементов: сделка создается корректно через UI и API<br>
+✅ Проверки авторизации и входа на портал<br>
+
+## Сборка в Jenkins ([ссылка](https://jenkins.autotests.cloud/job/qa_guru_diploma_anastasnanas_2/))
+![Сборка в Jenkins](images/screenshots/jenkins_screen.png)
+
+## Allure отчет ([ссылка](https://jenkins.autotests.cloud/job/qa_guru_diploma_anastasnanas_2/7/allure/#))
+
+🌿 При переходе по ссылке будет открыта вкладка Overview с общей статистикой по прогону. При клике на любой сьют (Suites) будут отображены кейсы с понятными названиями + справа шаги, которые были пройдены автотестом (скрин 2). </div>
+
+![Allure Report Screenshot](images/screenshots/allure_отчет.png)<br>
+![Allure Report Screenshot](images/screenshots/allure_отчет_2.png)<br>
+
+## Allure TestOps ([ссылка](https://allure.autotests.cloud/launch/49793/?treeId=0))
+![Allure Report Screenshot](images/screenshots/test_ops.png)<br>
+![Allure Report Screenshot](images/screenshots/allure_test_ops_case.png)<br>
