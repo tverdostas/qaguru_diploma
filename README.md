@@ -12,7 +12,7 @@
   
 🌿 В дипломной работе был использован пустой и бесплатный Битрикс, но проект вполне может использоваться как шаблон - часть взаимодействий проходит через API, чтобы сделать прогоны быстрее и стабильнее. Для написания таких тестов была использована официальная документация, ознакомиться на сайте вендора: https://helpdesk.bitrix24.ru/open/9721839/.
 </div>
-Использованы лого с сайта <a target="_blank" href="https://icons8.com/icon/13679/java">Логотип Java Coffee Cup</a> иконка от <a target="_blank" href="https://icons8.com">Icons8</a>
+<!-- Использованы лого с сайта <a target="_blank" href="https://icons8.com/icon/13679/java">Логотип Java Coffee Cup</a> иконка от <a target="_blank" href="https://icons8.com">Icons8</a> -->
 
 ## Технологии и инструменты:
 <div align="center">
