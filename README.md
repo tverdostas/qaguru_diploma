@@ -49,6 +49,15 @@
 ✅ Создание элементов: сделка создается корректно через UI и API<br>
 ✅ Создание элементов: задачи создаются успешно<br>
 
+## Локальный запуск тестов
+Для локального запуска тестов из IDE или из терминала необходимо выполнить следующую команду
+
+```
+gradle clean test -Denv=local
+```
+
+<a id="remoterun"></a>
+
 ## Сборка в Jenkins ([ссылка](https://jenkins.autotests.cloud/job/qa_guru_diploma_anastasnanas_2/))
 ![Сборка в Jenkins](images/screenshots/jenkins_screen.png)
 
@@ -64,5 +73,12 @@
 ![Allure Report Screenshot](images/screenshots/allure_test_ops_case.png)<br>
 
 ## Видео прогона теста на создание сделки через UI (часть шагов проходит через API):
+<p align="center">
+<img src="images/screenshots/video_example.gif " width="1000">
+</p>
+
+## Уведомления в telegram.
+После каждой успешной сборки в мессенджер telegram будет отправлено уведомление со статистикой по прогону, диаграммой, окружением, комментарием и ссылкой на отчет в Jenkins.
+![Allure Report Screenshot](images/screenshots/small_telegram.png)
 
 
