@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Epic("Создание элементов CRM")
 @Feature("Создание сделки")
-public class DealsCreateApiTests {
+public class DealsCreateApiTests extends BaseTest {
 
     DealsApi dealsApi = new DealsApi();
 
