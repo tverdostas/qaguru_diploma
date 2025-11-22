@@ -77,15 +77,16 @@ gradle clean test -Denv=local
 <a id="allure"></a>
 ## Allure отчет ([ссылка](https://jenkins.autotests.cloud/job/qa_guru_diploma_anastasnanas_2/7/allure/#))
 
-🌿 При переходе по ссылке будет открыта вкладка Overview с общей статистикой по прогону. При клике на любой сьют (Suites) будут отображены кейсы с понятными названиями + справа шаги, которые были пройдены автотестом (скрин 2). </div>
+🌿 При переходе по ссылке будет открыта вкладка Overview с общей статистикой по прогону. При клике на любой сьют (Suites) будут отображены кейсы с понятными названиями + справа шаги, которые были пройдены автотестом (скрин 2).
+В каждом тесте отчета есть последний скриншот, исходник страницы, логи браузера и видео. Пример видео можно увидеть далее. </div>
 
 ![Allure Report Screenshot](images/screenshots/allure_отчет.png)<br>
 ![Allure Report Screenshot](images/screenshots/allure_отчет_2.png)<br>
 
 <a id="testops"></a>
 ## Allure TestOps ([ссылка](https://allure.autotests.cloud/launch/49793/?treeId=0))
-![Allure Report Screenshot](images/screenshots/test_ops.png)<br>
-![Allure Report Screenshot](images/screenshots/allure_test_ops_case.png)<br>
+![Allure TestOps Screenshot](images/screenshots/test_ops.png)<br>
+![Allure TestOps Screenshot](images/screenshots/allure_test_ops_case.png)<br>
 
 <a id="video"></a>
 ## Видео прогона теста на создание сделки через UI (часть шагов проходит через API)
