@@ -29,15 +29,23 @@
 <a href="https://telegram.org/"><img alt="Telegram" height="45" src="images/icons/Telegram.png" width="45"/></a>
 </div>
 
-<div style="border-left: 3px solid #ddd; padding-left: 16px; margin: 20px 0; color: #333;">
-  <strong>Технологии</strong><br>
-  • Автотесты написаны на языке Java<br>
-  • Инструмент сборки Gradle<br>
-  • Тестовые фреймворки JUnit 5 и REST-assured<br>
-  • Удаленный запуск реализован на Jenkins<br>
-  • Отчеты генерируются с использованием Allure report<br>
-  • Добавлена интеграция с Allure TestOps<br>
-</div>
+<table style="border-collapse: collapse; border: none; width: 100%; margin: 0; background: transparent;">
+  <tr>
+    <td style="border: none; padding: 8px; vertical-align: top; width: 50%; background: transparent;">
+      • Автотесты написаны на языке Java<br>
+      • Инструмент сборки Gradle<br>
+      • Тестовые фреймворки JUnit 5 и REST-assured<br>
+      • Удаленный запуск реализован на Jenkins<br>
+      • Отчеты генерируются с использованием Allure report<br>
+      • Добавлена интеграция с Allure TestOps
+    </td>
+    <td style="border: none; padding: 8px; vertical-align: top; width: 50%; text-align: center; background: transparent;">
+      <a href="https://rest-assured.io/">
+        <a href="images/screenshots/report_in_telegram.png">
+      </a>
+    </td>
+  </tr>
+</table>
 
 ## Примеры тест-кейсов / проверок:
 ✅ Проверки меню: все пункты меню отображаются<br>
