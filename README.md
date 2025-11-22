@@ -72,13 +72,15 @@ gradle clean test -Denv=local
 ![Allure Report Screenshot](images/screenshots/test_ops.png)<br>
 ![Allure Report Screenshot](images/screenshots/allure_test_ops_case.png)<br>
 
-## Видео прогона теста на создание сделки через UI (часть шагов проходит через API):
+## Видео прогона теста на создание сделки через UI (часть шагов проходит через API)
 <p align="center">
 <img src="images/screenshots/video_example.gif " width="1000">
 </p>
 
-## Уведомления в telegram.
+## Уведомления в telegram
 После каждой успешной сборки в мессенджер telegram будет отправлено уведомление со статистикой по прогону, диаграммой, окружением, комментарием и ссылкой на отчет в Jenkins.
-![Allure Report Screenshot](images/screenshots/small_telegram.png)
+<p align="center">
+<img src="images/screenshots/small_telegram.png" width="500">
+</p>
 
 
