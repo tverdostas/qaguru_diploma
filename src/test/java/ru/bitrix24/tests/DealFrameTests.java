@@ -7,7 +7,7 @@ import io.qameta.allure.Feature;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.bitrix24.BaseTest;
+import ru.bitrix24.BaseUiTest;
 import ru.bitrix24.api.deals.Deal;
 import ru.bitrix24.api.steps.DealsSteps;
 import ru.bitrix24.components.DealsIframe;
@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 
 @Epic("Проверка наличия элементов во фрейме")
 @Feature("Проверка стадий сделки")
-public class DealFrameTests extends BaseTest {
+public class DealFrameTests extends BaseUiTest {
 
     private final DealsIframe dealsIframe = new DealsIframe();
 

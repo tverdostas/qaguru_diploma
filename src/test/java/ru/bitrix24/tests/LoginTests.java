@@ -4,14 +4,11 @@ import com.codeborne.selenide.Configuration;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import org.aeonbits.owner.ConfigFactory;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import ru.bitrix24.BaseTest;
-import ru.bitrix24.config.AppConfig;
+import ru.bitrix24.BaseUiTest;
 import ru.bitrix24.pageobject.DealsPage;
 import ru.bitrix24.pageobject.LoginPage;
 
@@ -19,16 +16,11 @@ import static com.codeborne.selenide.Selenide.open;
 
 @Epic("Логин и авторизация")
 @Feature("Проверки логина")
-public class LoginTests extends BaseTest {
+public class LoginTests extends BaseUiTest {
 
-    LoginPage loginPage;
-    DealsPage dealsPage;
+    LoginPage loginPage = new LoginPage();
+    DealsPage dealsPage = new DealsPage();
 
-    @BeforeEach
-    public void setUpPages() {
-        loginPage = new LoginPage();
-        dealsPage = new DealsPage();
-    }
 
     @ParameterizedTest
     @CsvSource({

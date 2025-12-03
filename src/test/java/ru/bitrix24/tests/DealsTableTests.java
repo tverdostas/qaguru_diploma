@@ -5,14 +5,14 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.bitrix24.BaseTest;
+import ru.bitrix24.BaseUiTest;
 import ru.bitrix24.pageobject.DealsPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Epic("Проверка наличия элементов во фрейме")
 @Feature("Проверка таймлайна сделки")
-public class DealsTableTests extends BaseTest {
+public class DealsTableTests extends BaseUiTest {
     
     DealsPage dealsPage = new DealsPage();
 

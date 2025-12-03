@@ -4,11 +4,10 @@ import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-import ru.bitrix24.BaseTest;
+import ru.bitrix24.BaseUiTest;
 import ru.bitrix24.api.deals.*;
 import ru.bitrix24.components.DealsCreateIframe;
 import ru.bitrix24.pageobject.DealsPage;
@@ -21,7 +20,7 @@ import static com.codeborne.selenide.Condition.visible;
 
 @Epic("Создание элементов CRM")
 @Feature("Создание сделки")
-public class DealsCreateTests extends BaseTest {
+public class DealsCreateTests extends BaseUiTest {
 
     DealsPage dealsPage = new DealsPage();;
     DealsApi dealsApi = new DealsApi();

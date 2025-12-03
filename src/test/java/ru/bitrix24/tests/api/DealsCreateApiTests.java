@@ -3,12 +3,10 @@ package ru.bitrix24.tests.api;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import io.restassured.RestAssured;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.bitrix24.BaseTest;
+import ru.bitrix24.BaseUiTest;
 import ru.bitrix24.api.deals.*;
-import ru.bitrix24.config.AppConfig;
 
 import java.util.Map;
 
@@ -16,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Epic("Создание элементов CRM")
 @Feature("Создание сделки")
-public class DealsCreateApiTests extends BaseTest {
+public class DealsCreateApiTests extends BaseApiTest {
 
     DealsApi dealsApi = new DealsApi();
 

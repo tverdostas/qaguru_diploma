@@ -19,15 +19,14 @@ import java.time.Duration;
 import java.util.Map;
 
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.*;
 import org.aeonbits.owner.ConfigFactory;
 import org.slf4j.Logger;
 
-public class BaseTest {
+public abstract class BaseUiTest {
 
     protected static AppConfig config;
-    public static final Logger log = LoggerFactory.getLogger(BaseTest.class);
+    public static final Logger log = LoggerFactory.getLogger(BaseUiTest.class);
 
     @BeforeAll
     static void setUp() {

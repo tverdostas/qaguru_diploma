@@ -6,7 +6,7 @@ import io.qameta.allure.Feature;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
-import ru.bitrix24.BaseTest;
+import ru.bitrix24.BaseUiTest;
 import ru.bitrix24.enums.MainMenuItems;
 import ru.bitrix24.pageobject.MainPage;
 
@@ -16,7 +16,7 @@ import static com.codeborne.selenide.Condition.visible;
 
 @Epic("Проверка наличия элементов главной страницы")
 @Feature("Проверка меню")
-public class MainPageTests extends BaseTest {
+public class MainPageTests extends BaseUiTest {
     MainPage mainPage = new MainPage();
 
     @DisplayName("В главном меню отображены все кнопки")

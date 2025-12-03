@@ -6,7 +6,7 @@ import io.qameta.allure.Feature;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.bitrix24.BaseTest;
+import ru.bitrix24.BaseUiTest;
 import ru.bitrix24.api.tasks.TaskApi;
 import ru.bitrix24.api.tasks.TaskCreateRequestDto;
 import ru.bitrix24.api.tasks.TaskCreateResponseDto;
@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Epic("Создание элементов CRM")
 @Feature("Создание задачи")
-public class TaskWithChecklistTest extends BaseTest {
+public class TaskWithChecklistTest extends BaseApiTest {
 
     private TaskApi taskApi;
 
