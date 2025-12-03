@@ -17,10 +17,8 @@ import static com.codeborne.selenide.Selenide.open;
 @Epic("Логин и авторизация")
 @Feature("Проверки логина")
 public class LoginTests extends BaseUiTest {
-
     LoginPage loginPage = new LoginPage();
     DealsPage dealsPage = new DealsPage();
-
 
     @ParameterizedTest
     @CsvSource({
@@ -30,7 +28,7 @@ public class LoginTests extends BaseUiTest {
 
     @DisplayName("Получение ошибок при неверной комбинации логина и пароля")
     public void wrongLoginTests(String username, String warningText) {
-        open(Configuration.baseUrl);
+        // open(Configuration.baseUrl);
 
         loginPage.fillLogin(username)
                 .checkVisibilityOfWarning()
@@ -40,7 +38,7 @@ public class LoginTests extends BaseUiTest {
     @Test
     @DisplayName("Успешный логин в систему")
     public void successfulLoginTest() {
-        Allure.step("Открыть главную страницу", () -> open(Configuration.baseUrl));
+        // Allure.step("Открыть главную страницу", () -> open(Configuration.baseUrl));
 
         Allure.step("Заполнить логин и пароль", () -> {
             loginPage.fillLogin(config.userLogin())
@@ -53,7 +51,7 @@ public class LoginTests extends BaseUiTest {
     @Test
     @DisplayName("Получение ошибки при вводе неправильного пароля")
     public void wrongPasswordTest() {
-        Allure.step("Открыть главную страницу", () -> open(Configuration.baseUrl));
+       // Allure.step("Открыть главную страницу", () -> open(Configuration.baseUrl));
 
         Allure.step("Заполнить логин и неправильный пароль, проверить предупреждение", () -> {
             loginPage.fillLogin(config.userLogin())
