@@ -1,5 +1,6 @@
 package ru.bitrix24.api.tasks;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,12 +8,11 @@ import ru.bitrix24.api.base.ResponseDto;
 
 import java.util.List;
 
-import static ru.bitrix24.utils.GsonProvider.GSON;
-
 @Getter
 @Setter
 public class TaskCreateResponseDto implements ResponseDto {
 
+    public static final Gson GSON = new Gson();
 
         private Result result;
         private Time time;

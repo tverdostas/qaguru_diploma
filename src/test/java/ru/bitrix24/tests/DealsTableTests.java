@@ -28,7 +28,7 @@ public class DealsTableTests extends BaseTest {
             int totalSum = dealsPage.getDealsTable()
                     .getDealsFromColumn("NEW")
                     .getTotalSum();
-            System.out.println("Total sum in 'NEW' column: " + totalSum);
+
             return totalSum;
         });
 

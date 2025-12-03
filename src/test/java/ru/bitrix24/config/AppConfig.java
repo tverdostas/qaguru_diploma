@@ -27,4 +27,16 @@ public interface AppConfig extends Config {
 
     @Key("selenoid.password")
     String selenoidPassword();
+
+    @Key("browser")
+    @DefaultValue("chrome")
+    String browser();
+
+    @Key("browser.version")
+    @DefaultValue("128.0")
+    String browserVersion();
+
+    @Key("browser.size")
+    @DefaultValue("1920x1080")
+    String browserSize();
 }

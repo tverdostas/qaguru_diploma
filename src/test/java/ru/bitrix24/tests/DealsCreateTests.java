@@ -23,19 +23,13 @@ import static com.codeborne.selenide.Condition.visible;
 @Feature("Создание сделки")
 public class DealsCreateTests extends BaseTest {
 
-    DealsPage dealsPage;
-    DealsApi dealsApi;
-
-    @BeforeEach // Инициализируем их перед каждым тестом, после setUp() в BaseTest
-    public void setUpDealsTest() {
-        dealsPage = new DealsPage();
-        dealsApi = new DealsApi();
-    }
-        // Предполагается, что dealsPage, dealsApi, switchToFrame, successfulLogin инициализированы/доступны
+    DealsPage dealsPage = new DealsPage();;
+    DealsApi dealsApi = new DealsApi();
 
     @DisplayName("Сделка успешно создается через UI")
     @Test
         public void dealIsSuccessfullyCreatedByButton() {
+
 
             String createdDealId = null; // будем хранить ID созданной сделки
 
@@ -49,7 +43,7 @@ public class DealsCreateTests extends BaseTest {
             int initialDealCount = Allure.step("Получить начальное количество сделок через API", () -> {
                 DealListResponseDto initialResponse = dealsApi.getListOfDeals(dealsRequest);
                 int count = initialResponse.getResult().size();
-                System.out.println("Initial deal count: " + count);
+                log.info("Initial deal count: " + count);
                 return count;
             });
 
@@ -83,7 +77,7 @@ public class DealsCreateTests extends BaseTest {
             int finalDealCount = Allure.step("Получить количество сделок после создания через UI", () -> {
                 DealListResponseDto finalResponse = dealsApi.getListOfDeals(dealsRequest);
                 int count = finalResponse.getResult().size();
-                System.out.println("Final deal count: " + count);
+                log.info("Final deal count: " + count);
                 return count;
             });
 
@@ -99,7 +93,7 @@ public class DealsCreateTests extends BaseTest {
                         .findFirst()
                         .map(Deal::getId) // предполагается, что у DealDto есть getId()
                         .orElseThrow(() -> new IllegalStateException("Созданная сделка не найдена в списке"));
-                System.out.println("Created deal ID: " + id);
+                log.info("Created deal ID: " + id);
                 return id;
             });
 

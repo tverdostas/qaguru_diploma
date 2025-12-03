@@ -55,7 +55,7 @@ public class TaskWithChecklistTest extends BaseTest {
         String createdTaskId = Allure.step("Получить ID созданной задачи", () -> {
             String id = createResponse.getResult().getTask().getId();
             assertThat(id).isNotNull().isNotEmpty();
-            System.out.println("Created task ID: " + id); // Опционально: логирование
+            log.info("Created task ID: " + id);
             return id;
         });
 

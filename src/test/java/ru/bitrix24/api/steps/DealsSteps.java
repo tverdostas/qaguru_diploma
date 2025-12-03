@@ -1,5 +1,7 @@
 package ru.bitrix24.api.steps;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.bitrix24.api.deals.Deal;
 import ru.bitrix24.api.deals.DealListResponseDto;
 import ru.bitrix24.api.deals.DealsApi;
@@ -14,6 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DealsSteps {
 
     private final DealsApi dealsApi = new DealsApi();
+    private static final Logger log = LoggerFactory.getLogger(DealsSteps.class);
 
     public Deal getRandomActiveDeal() {
         GetDealRequestDto dealsList = GetDealRequestDto.builder()
@@ -33,7 +36,8 @@ public class DealsSteps {
         assertThat(deal.getId()).isNotBlank();
         assertThat(deal.getTitle()).isNotBlank();
 
-        System.out.println("Выбрана случайная сделка: ID=" + deal.getId() + ", TITLE=" + deal.getTitle());
+        log.info("Выбрана случайная сделка: ID={}, TITLE={}", deal.getId(), deal.getTitle());
+
         return deal;
     }
 

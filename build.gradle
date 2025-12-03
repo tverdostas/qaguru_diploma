@@ -34,7 +34,6 @@ repositories {
 dependencies {
     testImplementation (
             "org.junit.jupiter:junit-jupiter:5.9.3",
-            "org.slf4j:slf4j-simple:2.0.17",
             "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:2.29.1",
             "com.codeborne:selenide-video-recorder:7.6.0",
@@ -46,11 +45,9 @@ dependencies {
             "com.fasterxml.jackson.core:jackson-annotations:2.15.2",
             "com.google.code.gson:gson:2.9.0",
             "org.aeonbits.owner:owner-java8:1.0.12",
+            'ch.qos.logback:logback-classic:1.5.6'
     )
     testImplementation 'org.projectlombok:lombok:1.18.28'
-
-    testRuntimeOnly(
-        "org.slf4j:slf4j-simple:2.0.17")
 }
 
 test {

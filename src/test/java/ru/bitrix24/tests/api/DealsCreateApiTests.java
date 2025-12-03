@@ -35,7 +35,7 @@ public class DealsCreateApiTests extends BaseTest {
         int initialDealCount = Allure.step("Получить начальное количество сделок", () -> {
             DealListResponseDto initialResponse = dealsApi.getListOfDeals(dealsRequest);
             int count = initialResponse.getResult().size();
-            System.out.println("Initial deal count: " + count);
+            log.info("Initial deal count: " + count);
             return count;
         });
 
@@ -46,14 +46,14 @@ public class DealsCreateApiTests extends BaseTest {
                             .build()
             );
             String id = String.valueOf(createResponse.getResult());
-            System.out.println("Created deal ID: " + id);
+            log.info("Created deal ID: " + id);
             return id;
         });
 
         int finalDealCount = Allure.step("Получить количество сделок после создания", () -> {
             DealListResponseDto finalResponse = dealsApi.getListOfDeals(dealsRequest);
             int count = finalResponse.getResult().size();
-            System.out.println("Final deal count: " + count);
+            log.info("Final deal count: " + count);
             return count;
         });
 

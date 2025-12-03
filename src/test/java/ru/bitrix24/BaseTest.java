@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.slf4j.LoggerFactory;
 import ru.bitrix24.config.AppConfig;
 import ru.bitrix24.helpers.Attach;
 import ru.bitrix24.pageobject.LoginPage;
@@ -21,24 +22,26 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.*;
 import org.aeonbits.owner.ConfigFactory;
+import org.slf4j.Logger;
 
 public class BaseTest {
 
     protected static AppConfig config;
+    public static final Logger log = LoggerFactory.getLogger(BaseTest.class);
 
     @BeforeAll
     static void setUp() {
 
         config = ConfigFactory.create(AppConfig.class, System.getProperties());
 
-        Configuration.browser = System.getProperty("browser", "chrome");
-        Configuration.browserVersion = System.getProperty("browserVersion", "128.0");
-        Configuration.browserSize = System.getProperty("windowSize", "1920x1080");
+        String browser = config.browser();
+        String browserVersion = config.browserVersion();
+        String browserSize = config.browserSize();
         Configuration.pageLoadStrategy = "normal";
         Configuration.baseUrl = config.baseUrl();
 
-        String selenoidPassword = System.getProperty("selenoidPassword");
-        String selenoidUsername = System.getProperty("selenoidUsername");
+        String selenoidPassword = config.selenoidPassword();
+        String selenoidUsername = config.selenoidUsername();
         if (selenoidPassword != null) {
             Configuration.remote = "https://" + selenoidUsername + ":" + selenoidPassword + "@" + System.getProperty("selenoid_url", "selenoid.autotests.cloud/wd/hub");
             DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -50,18 +53,11 @@ public class BaseTest {
             ));
             Configuration.browserCapabilities = capabilities;
         }
-
-// Улучшенное логирование: используем значения из config
-        System.out.println("UI baseUrl (from AppConfig) = " + config.baseUrl());
-        // Выводим apiWebhook (или baseApiUrl), если нужно проверить его значение
-        System.out.println("API Webhook/URL (from AppConfig) = " + config.apiWebhook()); // Или config.baseApiUrl()
-        // Выводим apiUrl, если он используется где-то ещё, но он, скорее всего, null
-        System.out.println("API url (from System.getProperty) = " + System.getProperty("apiUrl")); // Это, скорее всего, null
     }
 
     @BeforeEach
     public void browserConfigurations(){
-        open(baseUrl);
+        open("");
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 

@@ -31,7 +31,7 @@ public class DealFrameTests extends BaseTest {
         Deal deal = dealsSteps.getRandomActiveDeal();
 
         successfulLogin();
-        sleep(30000); // ⚠️ лучше заменить на ожидания, но оставим как есть
+        sleep(30000);
 
         open(Configuration.baseUrl + "/crm/deal/details/" + deal.getId() + "/");
         switchToFrame();

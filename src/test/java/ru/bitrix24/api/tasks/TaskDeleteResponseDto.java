@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import ru.bitrix24.api.base.ResponseDto;
-import ru.bitrix24.utils.GsonProvider;
 
 @Getter
 @Builder

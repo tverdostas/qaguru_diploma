@@ -1,0 +1,18 @@
+<!-- src/test/resources/logback.xml -->
+<configuration>
+    <!-- Формат сообщения -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Логировать всё в консоль -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <!-- Уменьшить шум от Selenide -->
+    <logger name="com.codeborne.selenide" level="INFO" />
+    <logger name="org.openqa.selenium" level="WARN" />
+</configuration>
