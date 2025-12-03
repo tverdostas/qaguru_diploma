@@ -6,8 +6,9 @@ import lombok.Getter;
 public enum TimelineActions {
     BUSINESS("Дело"),
     COMMENT("Комментарий"),
-    ONLINE_REGISTRATION("Онлайн-запись"),
-    TASK("Задача");
+    MESSAGE("Сообщение"),
+/*    ONLINE_REGISTRATION("Онлайн-запись"),
+    TASK("Задача")*/;
 
     // Геттер для получения названия на русском
     private final String displayName;

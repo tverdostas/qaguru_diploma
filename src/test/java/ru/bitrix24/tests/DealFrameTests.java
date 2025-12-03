@@ -25,6 +25,7 @@ public class DealFrameTests extends BaseUiTest {
 
     @DisplayName("Все табы отображены во фрейме сделки")
     @Test
+    // Пришлось подогнать enum под размер экрана в тесте
     void allActionsInTimelineAreDisplayedInDealIframe() {
         // Подготовка: получаем сделку и открываем страницу
         DealsSteps dealsSteps = new DealsSteps();
