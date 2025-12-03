@@ -20,10 +20,6 @@ public class LoginPage {
         return $x("//div[contains(@class, 'b24net-input-warning')]");
     }
 
-    public SelenideElement inputPasswordWarning() {
-        return $x("//div[contains(@class, 'b24net-input-warning')]");
-    }
-
     @Step
     public LoginPage fillLogin(String login) {
         userLogin().setValue(login).pressEnter();

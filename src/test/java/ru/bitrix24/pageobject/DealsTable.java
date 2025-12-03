@@ -1,6 +1,5 @@
 package ru.bitrix24.pageobject;
 
-import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,14 +15,6 @@ import static com.codeborne.selenide.Selenide.*;
 public class DealsTable {
 
     private int totalSum = 0;
-
-    public SelenideElement getColumnTitle() {
-        return $x("//*[@class=\"main-kanban-column-title-block-edit\"]");
-    }
-
-    public SelenideElement getColumnTotalPrice() {
-        return $x("//*[@class=\"crm-kanban-total-price-total\"]");
-    }
 
     @Step("Получить все элементы столбца {0}")
     public DealsTable getDealsFromColumn(String columnTitle) {

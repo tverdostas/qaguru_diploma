@@ -25,14 +25,6 @@ public class DealsPage {
     }
 
     @Step
-    public DealsPage openPage(){
-        open("/crm/deal/kanban/");
-        getPageTitle().shouldHave(text("Сделки"));
-
-        return this;
-    }
-
-    @Step
     public DealsPage checkPageTitle(String title) {
         getPageTitle().shouldHave(text(title));
 
