@@ -2,9 +2,9 @@ package ru.bitrix24.api.deals;
 
 import com.google.gson.Gson;
 import lombok.Getter;
-import ru.bitrix24.api.base.ResponseDto;
+
 @Getter
-public class DealCreateResponseDto implements ResponseDto {
+public class DealCreateResponseDto {
     private Integer result;
     private TimeInfo time;
 

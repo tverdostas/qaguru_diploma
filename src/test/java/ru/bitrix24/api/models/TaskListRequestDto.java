@@ -1,7 +1,6 @@
-package ru.bitrix24.api.tasks;
+package ru.bitrix24.api.models;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

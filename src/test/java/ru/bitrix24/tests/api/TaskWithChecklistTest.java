@@ -6,11 +6,10 @@ import io.qameta.allure.Feature;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.bitrix24.BaseUiTest;
 import ru.bitrix24.api.tasks.TaskApi;
-import ru.bitrix24.api.tasks.TaskCreateRequestDto;
-import ru.bitrix24.api.tasks.TaskCreateResponseDto;
-import ru.bitrix24.api.tasks.TaskListResponseDto;
+import ru.bitrix24.api.models.TaskCreateRequestDto;
+import ru.bitrix24.api.models.TaskCreateResponseDto;
+import ru.bitrix24.api.models.TaskListResponseDto;
 
 import java.util.Map;
 

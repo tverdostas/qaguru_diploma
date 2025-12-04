@@ -1,16 +1,15 @@
-package ru.bitrix24.api.tasks;
+package ru.bitrix24.api.models;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
-import ru.bitrix24.api.base.ResponseDto;
 
 import java.util.List;
 
 @Getter
 @Setter
-public class TaskCreateResponseDto implements ResponseDto {
+public class TaskCreateResponseDto {
 
     public static final Gson GSON = new Gson();
 

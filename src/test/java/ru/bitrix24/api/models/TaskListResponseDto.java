@@ -1,15 +1,14 @@
-package ru.bitrix24.api.tasks;
+package ru.bitrix24.api.models;
 
 import com.google.gson.Gson;
 import lombok.Getter;
 import lombok.Setter;
-import ru.bitrix24.api.base.ResponseDto;
 
 import java.util.List;
 
 @Getter
 @Setter
-public class TaskListResponseDto implements ResponseDto {
+public class TaskListResponseDto {
 
     private Result result;
     private Integer total;

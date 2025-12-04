@@ -2,9 +2,7 @@ package ru.bitrix24.api.tasks;
 
 import io.restassured.specification.RequestSpecification;
 import ru.bitrix24.api.base.BaseApi;
-
-import ru.bitrix24.api.deals.DealDeleteResponseDto;
-import ru.bitrix24.api.deals.DealListResponseDto;
+import ru.bitrix24.api.models.*;
 
 import java.util.List;
 import java.util.Map;
@@ -43,16 +41,6 @@ public class TaskApi extends BaseApi {
                 .extract().asString();
         return TaskListResponseDto.fromJson(json);
     }
-
-/*    public void addChecklistItem(Map<String, Object> params) {
-        given().log().all()
-                .spec(defaultRequestSpec)
-                .body(params) // Gson сам сериализует Map в JSON
-                .when()
-                .post("/task.checklistitem.add")
-                .then()
-                .statusCode(200);
-    }*/
 
     public int getTaskCount() {
         // Запрашиваем только ID, чтобы уменьшить объём данных

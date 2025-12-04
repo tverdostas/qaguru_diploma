@@ -1,13 +1,12 @@
 package ru.bitrix24.api.deals;
 
 import com.google.gson.Gson;
-import ru.bitrix24.api.base.ResponseDto;
 import lombok.Getter;
 
 import java.util.List;
 
 @Getter
-public class DealListResponseDto implements ResponseDto {
+public class DealListResponseDto {
     private List<Deal> result;
     private Integer next;
     private Integer total;

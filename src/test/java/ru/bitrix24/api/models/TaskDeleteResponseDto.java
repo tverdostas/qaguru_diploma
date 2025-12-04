@@ -1,15 +1,14 @@
-package ru.bitrix24.api.tasks;
+package ru.bitrix24.api.models;
 
 import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import ru.bitrix24.api.base.ResponseDto;
 
 @Getter
 @Builder
 @AllArgsConstructor
-public class TaskDeleteResponseDto implements ResponseDto {
+public class TaskDeleteResponseDto {
 
     private Result result;
     private Time time;

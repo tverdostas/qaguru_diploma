@@ -1,6 +1,8 @@
 package ru.bitrix24.api.tasks;
 
 import io.qameta.allure.Step;
+import ru.bitrix24.api.models.TaskListRequestDto;
+import ru.bitrix24.api.models.TaskListResponseDto;
 
 import java.util.List;
 import java.util.Map;
